@@ -1,0 +1,32 @@
+﻿<Window x:Class="LanguageSchools.Views.ShowProfessorsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LanguageSchools.Views"
+        mc:Ignorable="d"
+        Title="ShowProfessorsWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+       
+        <Menu Grid.Row="0" 
+              VerticalAlignment="Top" 
+              Height="30">
+            <MenuItem Name="miAddProfessor" Height="30" Header="Add professor" Click="miAddProfessor_Click"></MenuItem>
+            <MenuItem Name="miUpdateProfessor" Height="30" Header="Update professor" Click="miUpdateProfessor_Click"></MenuItem>
+            <MenuItem Name="miDeleteProfessor" Height="30" Header="Delete professor" Click="miDeleteProfessor_Click"></MenuItem>
+        </Menu>
+
+        <DataGrid CanUserAddRows="False" 
+                  IsReadOnly="True" 
+                  Grid.Row="1" 
+                  Name="dgProfessors" 
+                  Width="800" 
+                  Margin="0,0,-8,0"
+                  AutoGeneratingColumn="dgProfessors_AutoGeneratingColumn"/>
+
+    </Grid>
+</Window>
