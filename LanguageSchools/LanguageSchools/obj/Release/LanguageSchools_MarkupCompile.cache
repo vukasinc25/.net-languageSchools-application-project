@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Release\
 LanguageSchools
 none
 false
-DEBUG;TRACE
+TRACE
 D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\App.xaml
 3869123401
 
-29-1362747814
+231146058747
 13-1310406943
 MainWindow.xaml;Views\AddEditProfessorsWindow.xaml;Views\ShowProfessorsWindow.xaml;
 

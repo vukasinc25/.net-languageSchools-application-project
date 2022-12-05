@@ -62,14 +62,19 @@
     <Compile Include="Models\EGender.cs" />
     <Compile Include="Models\EUserType.cs" />
     <Compile Include="Models\Professor.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Repositories\IProfessorRepository.cs" />
+    <Compile Include="Repositories\IStudentRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\ProfessorRepository.cs" />
+    <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\IProfessorService.cs" />
+    <Compile Include="Services\IStudentService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\ProfessorService.cs" />
+    <Compile Include="Services\StudentService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Views\AddEditProfessorsWindow.xaml.cs">
       <DependentUpon>AddEditProfessorsWindow.xaml</DependentUpon>

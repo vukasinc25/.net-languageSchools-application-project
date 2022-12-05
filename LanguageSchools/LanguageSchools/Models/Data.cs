@@ -15,6 +15,7 @@ namespace LanguageSchools.Models
 
         public List<User> Users { get; set; }
         public List<Professor> Professors { get; set; }
+        public List<Student> Students { get; set; }
 
         static Data() { }
 
@@ -22,6 +23,7 @@ namespace LanguageSchools.Models
         {
             Users = new List<User>();
             Professors = new List<Professor>();
+            Students = new List<Student>();
         }
 
         public static Data Instance

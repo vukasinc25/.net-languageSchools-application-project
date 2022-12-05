@@ -17,3 +17,24 @@ C:\Users\Nastava\Desktop\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchoo
 C:\Users\Nastava\Desktop\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.csproj.CoreCompileInputs.cache
 C:\Users\Nastava\Desktop\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.exe
 C:\Users\Nastava\Desktop\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.pdb
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\bin\Debug\LanguageSchools.exe.config
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\bin\Debug\LanguageSchools.exe
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\bin\Debug\LanguageSchools.pdb
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.csproj.AssemblyReference.cache
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.csproj.SuggestedBindingRedirects.cache
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\MainWindow.g.cs
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\Views\AddEditProfessorsWindow.g.cs
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\Views\ShowProfessorsWindow.g.cs
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\App.g.cs
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools_MarkupCompile.cache
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools_MarkupCompile.lref
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\App.baml
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\MainWindow.baml
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\Views\AddEditProfessorsWindow.baml
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\Views\ShowProfessorsWindow.baml
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.g.resources
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.Properties.Resources.resources
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.csproj.GenerateResource.cache
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.csproj.CoreCompileInputs.cache
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.exe
+D:\Fakultet\Objektno Progrmiranje Platforme\Vežbe\Vezbe06\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.pdb
