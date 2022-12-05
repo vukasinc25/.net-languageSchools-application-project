@@ -1,2 +1,2 @@
 Platforms for Objective Programming Project.
-Made using .NET technologies and SQL.
+Developed using .NET technologies and SQL.
