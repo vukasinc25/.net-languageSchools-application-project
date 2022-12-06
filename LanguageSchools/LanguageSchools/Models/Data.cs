@@ -16,6 +16,7 @@ namespace LanguageSchools.Models
         public List<User> Users { get; set; }
         public List<Professor> Professors { get; set; }
         public List<Student> Students { get; set; }
+        public List<SchoolClass> SchoolClasses { get; set; }
 
         static Data() { }
 
@@ -24,6 +25,7 @@ namespace LanguageSchools.Models
             Users = new List<User>();
             Professors = new List<Professor>();
             Students = new List<Student>();
+            SchoolClasses = new List<SchoolClass>();
         }
 
         public static Data Instance
@@ -107,7 +109,7 @@ namespace LanguageSchools.Models
                     Instance = (Data)formatter.Deserialize(stream);
                 }
             }
-            catch (Exception e)
+            catch (Exception ejo)
             {
                 Instance = new Data();
             }
