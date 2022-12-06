@@ -88,6 +88,17 @@ namespace LanguageSchools.Models
             };
 
             Professors.Add(professor);
+
+            SchoolClass schoolClass1 = new SchoolClass
+            {
+                Id = 0 + "",
+                Date = DateTime.Now,
+                StartTime = DateTime.Now,
+                Duration = TimeSpan.Zero,
+                IsActive = true,
+                IsReserved = false
+            };
+            SchoolClasses.Add(schoolClass1);
         }
 
         public void Save()
