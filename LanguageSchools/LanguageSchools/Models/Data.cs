@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using LanguageSchools.Repositories;
 using LanguageSchools.Services;
 
 namespace LanguageSchools.Models
@@ -17,6 +18,7 @@ namespace LanguageSchools.Models
         public List<Professor> Professors { get; set; }
         public List<Student> Students { get; set; }
         public List<SchoolClass> SchoolClasses { get; set; }
+        public List<Address> Adresses { get; set; }
 
         static Data() { }
 
@@ -26,6 +28,7 @@ namespace LanguageSchools.Models
             Professors = new List<Professor>();
             Students = new List<Student>();
             SchoolClasses = new List<SchoolClass>();
+            Adresses = new List<Address>();
         }
 
         public static Data Instance

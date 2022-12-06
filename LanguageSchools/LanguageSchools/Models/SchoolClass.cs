@@ -10,6 +10,7 @@ namespace LanguageSchools.Models
     public class SchoolClass : ICloneable
     {
         public string Id { get; set; }
+        public string Name { get; set; }
         public Professor Professor { get; set; }
         public Student Student { get; set; }
         public DateTime StartTime { get; set; }
@@ -23,6 +24,7 @@ namespace LanguageSchools.Models
             return new SchoolClass
             {
                 Id = Id,
+                Name = Name,
                 Professor = Professor?.Clone() as Professor,
                 Student = Student?.Clone() as Student,
                 StartTime = StartTime,

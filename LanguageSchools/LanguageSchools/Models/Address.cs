@@ -14,6 +14,7 @@ namespace LanguageSchools.Models
         public string StreetNumber { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public bool IsActive { get; set; } 
 
         public object Clone()
         {
@@ -23,7 +24,8 @@ namespace LanguageSchools.Models
                 Street = Street,
                 StreetNumber = StreetNumber,
                 City = City,
-                Country = Country
+                Country = Country,
+                IsActive = IsActive
             };
         }
 

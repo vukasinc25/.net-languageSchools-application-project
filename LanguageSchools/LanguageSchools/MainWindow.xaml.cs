@@ -23,31 +23,30 @@ namespace LanguageSchools
     /// </summary>
     public partial class MainWindow : Window
     {
-        private SchoolClassesService schoolClassService = new SchoolClassesService();
-        private ProfessorService professorService = new ProfessorService();
         private StudentService studentService = new StudentService();
+        private ProfessorService professorService = new ProfessorService();
+        private SchoolClassesService schoolClassService = new SchoolClassesService();
         public MainWindow()
         {
             InitializeComponent();
             Data.Load();
             RefreshDataGrid();
         }
-        private void btnStart_Click(object sender, RoutedEventArgs e)
-        {
-            var professorsWindow = new ShowProfessorsWindow();
-            professorsWindow.Show();
-            this.Hide();
-        }
+
         private void RefreshDataGrid()
         {
+            List<User> usersStudents = studentService.GetAll().Select(p => p.User).ToList();
+            DgStudents.ItemsSource = usersStudents;
+   
             List<User> usersProfessors = professorService.GetAll().Select(p => p.User).ToList();
             DgProfessors.ItemsSource = usersProfessors;
 
-            List<User> usersStudents = studentService.GetAll().Select(p => p.User).ToList();
-            DgStudents.ItemsSource = usersStudents;
-
             List<SchoolClass> schoolClasses = schoolClassService.GetAll().Select(p => p).ToList();
             DgClasses.ItemsSource = schoolClasses;
+
+            //Console.WriteLine("alooo1" + usersStudents);
+            //Console.WriteLine("alooo2" + usersProfessors);
+            //Console.WriteLine("alooo3" + schoolClasses);
         }
         private void BtnAddProfessors_Click(object sender, RoutedEventArgs e)
         {
