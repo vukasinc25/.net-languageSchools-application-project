@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LanguageSchools"
         mc:Ignorable="d"
-        Title="LanguageSchools" Height="450" Width="800">
+        Title="Language Schools" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Width" Value="65"></Setter>
@@ -17,13 +17,17 @@
         <WrapPanel 
             DockPanel.Dock="Top"
             HorizontalAlignment="Left">
-            <Button>Login</Button>
-            <Button>Register</Button>
+            <!--<Button>Login</Button>
+            <Button>Register</Button>-->
         </WrapPanel>
         <Grid>
             <TabControl HorizontalAlignment="Stretch">
                 <TabItem Name="TiClasses" Header="Classes">
                     <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="119*"/>
+                            <ColumnDefinition Width="676*"/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -34,11 +38,11 @@
                                               CanUserAddRows="False"
                                               IsReadOnly="True"
                                               Name="DgClasses"
-                                              AutoGeneratingColumn="DgClasses_AutoGeneratingColumn">
+                                              AutoGeneratingColumn="DgClasses_AutoGeneratingColumn" Margin="0,0,0,91" Grid.RowSpan="3" Grid.ColumnSpan="2">
                         </DataGrid>
 
-                        <WrapPanel Grid.Row="1"
-                                               HorizontalAlignment="Right">
+                        <WrapPanel Grid.Row="2"
+                                               HorizontalAlignment="Right" Margin="0,21,10,70" Grid.RowSpan="2" Grid.Column="1">
                             <Button Name="BtnAddClasses" 
                                             Click="BtnAddClasses_Click">Add</Button>
                             <Button Name="BtnEditClasses" 
@@ -48,7 +52,7 @@
                         </WrapPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Name="TiSchools" Header="Schools">
+                <!--<TabItem Name="TiSchools" Header="Schools">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
@@ -59,7 +63,7 @@
                         </GroupBox>
                         <GroupBox Header="Professors in them:" Grid.ColumnSpan="2" Margin="10,189,10,10" />
                     </Grid>
-                </TabItem>
+                </TabItem>-->
                 <TabItem Name="TiProfessors" Header="Professors">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -72,11 +76,11 @@
                                               CanUserAddRows="False"
                                               IsReadOnly="True"
                                               Name="DgProfessors"
-                                              AutoGeneratingColumn="DgProfessors_AutoGeneratingColumn">
+                                              AutoGeneratingColumn="DgProfessors_AutoGeneratingColumn" Margin="0,0,0,91" Grid.RowSpan="3">
                         </DataGrid>
 
-                        <WrapPanel Grid.Row="1"
-                                               HorizontalAlignment="Right">
+                        <WrapPanel Grid.Row="2"
+                                               HorizontalAlignment="Right" Margin="0,21,10,70" Grid.RowSpan="2">
                             <Button Name="BtnAddProfessors" 
                                             Click="BtnAddProfessors_Click">Add</Button>
                             <Button Name="BtnEditProfessor" 
@@ -98,10 +102,10 @@
                                               CanUserAddRows="False"
                                               IsReadOnly="True"
                                               Name="DgStudents"
-                                              AutoGeneratingColumn="DgStudents_AutoGeneratingColumn">
+                                              AutoGeneratingColumn="DgStudents_AutoGeneratingColumn" Margin="0,0,0,91" Grid.RowSpan="3">
                         </DataGrid>
-                        <WrapPanel Grid.Row="1"
-                                               HorizontalAlignment="Right">
+                        <WrapPanel Grid.Row="2"
+                                               HorizontalAlignment="Right" Margin="0,21,10,70" Grid.RowSpan="2">
                             <Button Name="BtnAddStudent" 
                                             Click="BtnAddStudent_Click">Add</Button>
                             <Button Name="BtnEditStudent" 

@@ -9,11 +9,11 @@ namespace LanguageSchools.Models
     [Serializable]
     public class SchoolClass : ICloneable
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public Professor Professor { get; set; }
         public Student Student { get; set; }
-        public DateTime StartTime { get; set; }
+        public string StartTime { get; set; }
         public TimeSpan Duration { get; set; }
         public DateTime Date { get; set; }
         public bool IsReserved { get; set; }

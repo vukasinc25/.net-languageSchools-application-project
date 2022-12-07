@@ -51,11 +51,11 @@ namespace LanguageSchools.Views
             DataContext = this.student;
 
             isAddMode = false;
-            TxtJmbg.IsReadOnly = true;
-            TxtEmail.IsReadOnly = true;
+            //TxtJmbg.IsReadOnly = true;
+            //TxtEmail.IsReadOnly = true;
         }
 
-        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (student.User.IsValid)
             {
@@ -73,7 +73,7 @@ namespace LanguageSchools.Views
             }
         }
 
-        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             Close();

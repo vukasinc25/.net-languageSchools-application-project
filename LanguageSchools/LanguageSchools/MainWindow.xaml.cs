@@ -189,8 +189,8 @@ namespace LanguageSchools
 
             if (selectedClass != null)
             {
-                int code = int.Parse(selectedClass.Id);
-                schoolClassService.Delete(code);
+                int id = selectedClass.Id;
+                schoolClassService.Delete(id);
                 RefreshDataGrid();
             }
         }

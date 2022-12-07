@@ -5,132 +5,99 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LanguageSchools.Views"
         mc:Ignorable="d"
-        Title="AddEditStudentsWindow" Height="500" Width="450">
-    <Window.Resources>
-        <Style TargetType="Label">
-            <Setter Property="Height" Value="26"/>
-            <Setter Property="Margin" Value="0 6 0 0"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-        </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="Height" Value="26"/>
-            <Setter Property="Margin" Value="0 6 10 0"></Setter>
-            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-        </Style>
-        <Style TargetType="ComboBox">
-            <Setter Property="Height" Value="26"/>
-            <Setter Property="Margin" Value="0 6 10 0"></Setter>
-        </Style>
-        <Style TargetType="PasswordBox">
-            <Setter Property="Height" Value="26"/>
-            <Setter Property="Margin" Value="0 6 10 0"></Setter>
-        </Style>
-    </Window.Resources>
+        Title="Student" Height="500" Width="450">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"></ColumnDefinition>
-            <ColumnDefinition Width="75*"></ColumnDefinition>
+            <ColumnDefinition Width="23*"></ColumnDefinition>
+            <ColumnDefinition Width="76*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="37*"></RowDefinition>
+            <RowDefinition Height="37*"></RowDefinition>
+            <RowDefinition Height="37*"></RowDefinition>
+            <RowDefinition Height="37*"></RowDefinition>
+            <RowDefinition Height="37*"></RowDefinition>
+            <RowDefinition Height="37*"></RowDefinition>
+            <RowDefinition Height="234*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" 
-               Grid.Row="0"
-               Content="Email:"></Label>
+        <Label Grid.Column="0" Grid.Row="0" 
+               Name="lblEmail" 
+               Content="Email:"
+               HorizontalAlignment="Right" Width="41"></Label>
 
-        <TextBox Grid.Column="1" 
-                 Grid.Row="0" 
-                 Name="TxtEmail" 
-                 Text="{Binding Path = User.Email, ValidatesOnDataErrors = True}"></TextBox>
+        <TextBox Grid.Column="1"
+                 Grid.Row="0"
+                 Name="txtEmail"
+                 Margin="5,5,5,5"
+                 Text="{Binding Path = User.Email, ValidatesOnDataErrors=True}"></TextBox>
+        <Label Grid.Column="0" Grid.Row="1" 
+               Name="lblPassword" 
+               Content="Password:"
+               HorizontalAlignment="Right" Width="62"></Label>
 
-        <Label Grid.Column="0" 
-               Grid.Row="1"
-               Content="Password:"></Label>
+        <TextBox Grid.Column="1"
+                 Grid.Row="1"
+                 Name="txtPassword"
+                 Margin="5,5,5,5" Text="{Binding Path=User.Password, ValidatesOnDataErrors=True}"></TextBox>
 
-        <TextBox Grid.Column="1" 
-                 Grid.Row="1" 
-                 Name="PwPassword" 
-                 Text="{Binding Path = User.Password, ValidatesOnDataErrors = True}"></TextBox>
+        <Label Grid.Column="0" Grid.Row="2" 
+               Name="lblFirstName" 
+               Content="First name:"
+               HorizontalAlignment="Right" Width="67"></Label>
 
-        <Label Grid.Column="0" 
-                   Grid.Row="2"
-                   Content="First Name:"></Label>
+        <TextBox Grid.Column="1"
+                 Grid.Row="2"
+                 Name="txtFirstName"
+                 Margin="5,5,5,5"
+                 Text="{Binding Path=User.FirstName, ValidatesOnDataErrors=True}"></TextBox>
 
-        <TextBox Grid.Column="1" 
-                 Grid.Row="2" 
-                 Name="TxtName" 
-                 Text="{Binding Path = User.Name, ValidatesOnDataErrors = True}"></TextBox>
+        <Label Grid.Column="0" Grid.Row="3" 
+               Name="lblLastName" 
+               Content="Last name:"
+               HorizontalAlignment="Right" Width="66"></Label>
 
-        <Label Grid.Column="0" 
-               Grid.Row="3" 
-               Content="Last Name:"></Label>
+        <TextBox Grid.Column="1"
+                 Grid.Row="3"
+                 Name="txtLastName"
+                 Margin="5,5,5,5"
+                 Text="{Binding Path=User.LastName, ValidatesOnDataErrors=True}"></TextBox>
 
-        <TextBox Grid.Column="1" 
-                 Grid.Row="3" 
-                 Name="TxtSurName" 
-                 Text="{Binding Path = User.SurName, ValidatesOnDataErrors = True}"></TextBox>
+        <Label Grid.Column="0" Grid.Row="4" 
+               Name="lblJMBG" 
+               Content="JMBG:"
+               HorizontalAlignment="Right" Width="43"></Label>
 
-        <Label Grid.Column="0" 
-               Grid.Row="4" 
-               Content="JMBG:"></Label>
+        <TextBox Grid.Column="1"
+                 Grid.Row="4" Name="txtJMBG"
+                 Margin="5,5,5,5"
+                 Text="{Binding Path = User.JMBG, ValidatesOnDataErrors=True}"></TextBox>
 
-        <TextBox Grid.Column="1" 
-                 Grid.Row="4" 
-                 Name="TxtJmbg" 
-                 Text="{Binding Path = User.Jmbg, ValidatesOnDataErrors = True}"></TextBox>
+        <Label Grid.Column="0" Grid.Row="5" 
+               Name="lblGender" 
+               Content="Gender:"
+               HorizontalAlignment="Right" Width="43"></Label>
 
-        <Label Grid.Column="0" 
-               Grid.Row="6"
-               Content="Gender:"></Label>
-
-        <Label Grid.Column="0"
-               Grid.Row="5"
-               Content="Address:"></Label>
-
-        <TextBox Grid.Column="1" 
-                 Grid.Row="5" 
-                 Name="TxtAddress" 
-                 Text="{Binding Path = User.Adress, ValidatesOnDataErrors = True}"></TextBox>
-
-        <ComboBox Grid.Column="1" 
-                  Grid.Row="6" 
-                  Name="CbGender" 
-                  Text="{Binding User.Gender}">
+        <ComboBox Grid.Column="1" Grid.Row="5" Name="cbGender" Margin="5,5,5,5"  Text="{Binding User.Gender}">
             <ComboBoxItem Content="MALE"></ComboBoxItem>
-            <ComboBoxItem Content="FEMALE"></ComboBoxItem>
+            <ComboBoxItem Content="FEMEALE"></ComboBoxItem>
             <ComboBoxItem Content="OTHER"></ComboBoxItem>
         </ComboBox>
-        <WrapPanel Grid.Column="1" 
-                   Grid.Row="7" 
-                   HorizontalAlignment="Right">
 
-            <Button Name="BtnAdd"
-                Grid.Column="1" 
-                Content="Save"
+        <Button Name="btnSave"
+                Grid.Column="1"
+                Grid.Row="6"
                 Height="35"
                 Width="65"
-                VerticalAlignment="Bottom"
-                Margin="0 5 15 10" Click="BtnAdd_Click" 
-                ></Button>
-
-            <Button Name="BtnCancel"
-                Grid.Column="1" 
-                Content="Cancel"
+                Margin="117,149,122,35"
+                Click="btnSave_Click">Save</Button>
+        <Button Name="btnCancel"
+                Grid.Column="1"
+                Grid.Row="6"
                 Height="35"
                 Width="65"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Right"
-                Margin="0 5 10 10" Click="BtnCancel_Click" 
-                ></Button>
-        </WrapPanel>
+                Margin="222,149,17,35"
+                Click="btnCancel_Click">Cancel</Button>
+
     </Grid>
 </Window>

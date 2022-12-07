@@ -29,6 +29,7 @@ namespace LanguageSchools.Views
             InitializeComponent();
             var schoolClass = new SchoolClass
             {
+                Date= DateTime.Today,
                 IsActive = true
             };
 
@@ -46,6 +47,23 @@ namespace LanguageSchools.Views
             //TxtJmbg.IsReadOnly = true;
             //TxtEmail.IsReadOnly = true;
         }
-
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (isAddMode)
+            {
+                schoolClassService.Add(schoolClass);
+            }
+            else
+            {
+                schoolClassService.Update(schoolClass.Id, schoolClass);
+            }
+            DialogResult = true;
+            Close();
+        }
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
+        }
     }
 }

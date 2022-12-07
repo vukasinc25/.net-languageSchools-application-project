@@ -60,6 +60,7 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Data.cs" />
     <Compile Include="Models\EGender.cs" />
+    <Compile Include="Models\EState.cs" />
     <Compile Include="Models\EUserType.cs" />
     <Compile Include="Models\Professor.cs" />
     <Compile Include="Models\SchoolClass.cs" />
