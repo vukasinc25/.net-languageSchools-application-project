@@ -146,9 +146,9 @@ namespace LanguageSchools
         }
         private void DgClasses_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.PropertyName == "Error" || e.PropertyName == "IsValid")
+            if (e.PropertyType == typeof(DateTime))
             {
-                e.Column.Visibility = Visibility.Collapsed;
+                (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
             }
         }
 

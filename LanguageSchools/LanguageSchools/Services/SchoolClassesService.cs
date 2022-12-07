@@ -17,12 +17,20 @@ namespace LanguageSchools.Services
         }
         public void Add(SchoolClass schoolClass)
         {
+            if(schoolClass.Id == 0)
+            {
+                schoolClass.Id = schoolClassRepository.nextId(GetAll());
+            }
             schoolClassRepository.Add(schoolClass);
         }
         public void Delete(int id)
         {
             schoolClassRepository.Delete(id);
         }
+        //public int nextId(List<SchoolClass> listClasses)
+        //{
+        //    return schoolClassRepository.nextId(listClasses);
+        //}
         public List<SchoolClass> GetActiveClasses()
         {
             return schoolClassRepository.GetAll().Where(p =>p.IsActive).ToList();

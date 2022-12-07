@@ -11,6 +11,7 @@ namespace LanguageSchools.Repositories
     {
         List<SchoolClass> GetAll();
         SchoolClass GetById(int id);
+        int nextId(List<SchoolClass> listClasses);
         void Add(SchoolClass schoolClass);
         void Add(List<SchoolClass> schoolClass);
         void Set(List<SchoolClass> schoolClass);

@@ -93,9 +93,6 @@
     <Compile Include="Views\AddEditStudentsWindow.xaml.cs">
       <DependentUpon>AddEditStudentsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ShowProfessorsWindow.xaml.cs">
-      <DependentUpon>ShowProfessorsWindow.xaml</DependentUpon>
-    </Compile>
     <Page Include="Views\AddEditSchoolClassesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,10 +114,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AddEditProfessorsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ShowProfessorsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

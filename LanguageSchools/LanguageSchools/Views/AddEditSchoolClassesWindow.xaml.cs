@@ -29,8 +29,9 @@ namespace LanguageSchools.Views
             InitializeComponent();
             var schoolClass = new SchoolClass
             {
-                Date= DateTime.Today,
+                Date = DateTime.Today,
                 IsActive = true
+                //Id = 0
             };
 
             isAddMode = true;
@@ -44,7 +45,7 @@ namespace LanguageSchools.Views
             DataContext = this.schoolClass;
 
             isAddMode = false;
-            //TxtJmbg.IsReadOnly = true;
+            txtName.IsReadOnly = true;
             //TxtEmail.IsReadOnly = true;
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)

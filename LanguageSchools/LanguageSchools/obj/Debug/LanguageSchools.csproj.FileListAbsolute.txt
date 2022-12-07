@@ -44,13 +44,11 @@ C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\bin\Debug\Language
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.csproj.AssemblyReference.cache
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.csproj.SuggestedBindingRedirects.cache
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\AddEditProfessorsWindow.g.cs
-C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\ShowProfessorsWindow.g.cs
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\App.g.cs
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools_MarkupCompile.cache
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools_MarkupCompile.lref
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\App.baml
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\AddEditProfessorsWindow.baml
-C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\ShowProfessorsWindow.baml
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.g.resources
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.Properties.Resources.resources
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.csproj.GenerateResource.cache

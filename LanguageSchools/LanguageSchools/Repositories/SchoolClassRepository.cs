@@ -43,9 +43,33 @@ namespace LanguageSchools.Repositories
         {
             Data.Instance.SchoolClasses = newSchoolClass;
         }
-        public void Update(int code, SchoolClass newSchoolClass)
+        public int nextId(List<SchoolClass> listClasses)
         {
+            int nextId = 0;
+            for (int i = 0; i <= listClasses.Count; i++)
+            {
+                if (nextId < i)
+                {
+                    nextId = i;
+                }
+            }
+            nextId += 1;
+            return nextId;
+        }
+        public void Update(int id, SchoolClass classs)
+        {   
+            SchoolClass schoolClass = GetById(id);
+            if (schoolClass != null)
+            {
+                schoolClass.Id = classs.Id;
+                schoolClass.Name = classs.Name;
+                schoolClass.Date = classs.Date;
+                schoolClass.StartTime = classs.StartTime;
+                schoolClass.Duration = classs.Duration;
+                schoolClass.State = classs.State;
+            }
             Data.Instance.Save();
+
         }
     }
 }
