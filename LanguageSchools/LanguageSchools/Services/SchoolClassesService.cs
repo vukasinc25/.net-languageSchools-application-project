@@ -17,7 +17,7 @@ namespace LanguageSchools.Services
         }
         public void Add(SchoolClass schoolClass)
         {
-            if(schoolClass.Id == 0)
+            if (schoolClass.Id == 0)
             {
                 schoolClass.Id = schoolClassRepository.nextId(GetAll());
             }

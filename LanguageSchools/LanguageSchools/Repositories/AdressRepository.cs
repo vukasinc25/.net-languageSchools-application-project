@@ -9,19 +9,19 @@ namespace LanguageSchools.Repositories
 {
     class AdressRepository : IAdressRepository
     {
-        public void Add(Address adress)
+        public void Add(Adress adress)
         {
             Data.Instance.Adresses.Add(adress);
             Data.Instance.Save();
         }
-        public void Add(List<Address> newAdress)
+        public void Add(List<Adress> newAdress)
         {
             Data.Instance.Adresses.AddRange(newAdress);
             Data.Instance.Save();
         }
         public void Delete(int id)
         {
-            Address address = GetById(id);
+            Adress address = GetById(id);
 
             if (address != null)
             {
@@ -30,22 +30,22 @@ namespace LanguageSchools.Repositories
 
             Data.Instance.Save();
         }
-        public List<Address> GetAll()
+        public List<Adress> GetAll()
         {
             //TODO :DDDDDDDDD
             throw new NotImplementedException();
         }
-        public Address GetById(int id)
+        public Adress GetById(int id)
         {
             //NOTTODO :D:D::D
             throw new NotImplementedException();
         }
-        public void Set(List<Address> address)
+        public void Set(List<Adress> address)
         {
             //TODO:D:D::D
             throw new NotImplementedException();
         }
-        public void Update(int id, Address address)
+        public void Update(int id, Adress address)
         {
             //TODO :!:!:!:
             throw new NotImplementedException();

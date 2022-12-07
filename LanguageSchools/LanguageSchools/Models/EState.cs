@@ -8,6 +8,6 @@ namespace LanguageSchools.Models
 {
     public enum EState
     {
-        REZERVISAN,SLOBODAN
+        AVAILABLE, RESERVED
     }
 }

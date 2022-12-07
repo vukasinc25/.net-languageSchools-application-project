@@ -66,7 +66,7 @@ namespace LanguageSchools.Repositories
 
             if(user != null)
             {
-                user.Address = updatedUser.Address;
+                user.Adress = updatedUser.Adress;
                 user.FirstName = updatedUser.FirstName;
                 user.LastName = updatedUser.LastName;
                 user.Password = updatedUser.Password;

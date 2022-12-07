@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LanguageSchools.Models
 {
     [Serializable]
-    public class Address: ICloneable
+    public class Adress: ICloneable
     {
         public int Id { get; set; }
         public string Street { get; set; }
@@ -18,7 +18,7 @@ namespace LanguageSchools.Models
 
         public object Clone()
         {
-            return new Address
+            return new Adress
             {
                 Id = Id,
                 Street = Street,

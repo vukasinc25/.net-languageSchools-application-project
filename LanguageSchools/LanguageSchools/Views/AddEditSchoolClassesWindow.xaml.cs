@@ -27,7 +27,7 @@ namespace LanguageSchools.Views
         public AddEditSchoolClassesWindow()
         {
             InitializeComponent();
-            var schoolClass = new SchoolClass
+            schoolClass = new SchoolClass
             {
                 Date = DateTime.Today,
                 IsActive = true

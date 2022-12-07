@@ -18,7 +18,7 @@ namespace LanguageSchools.Models
         public List<Professor> Professors { get; set; }
         public List<Student> Students { get; set; }
         public List<SchoolClass> SchoolClasses { get; set; }
-        public List<Address> Adresses { get; set; }
+        public List<Adress> Adresses { get; set; }
 
         static Data() { }
 
@@ -28,7 +28,7 @@ namespace LanguageSchools.Models
             Professors = new List<Professor>();
             Students = new List<Student>();
             SchoolClasses = new List<SchoolClass>();
-            Adresses = new List<Address>();
+            Adresses = new List<Adress>();
         }
 
         public static Data Instance
@@ -48,7 +48,7 @@ namespace LanguageSchools.Models
 
         public void Initialize()
         {
-            Address address = new Address
+            Adress address = new Adress
             {
                 City = "Novi Sad",
                 Country = "Srbija",
@@ -57,40 +57,40 @@ namespace LanguageSchools.Models
                 Id = 1
             };
 
-            User user1 = new User()
-            {
-                FirstName = "Pera",
-                LastName = "Peric",
-                Email = "pera@gmail.com",
-                JMBG = "121346",
-                Password = "peki",
-                Gender = EGender.MALE,
-                Address = address,
-                UserType = EUserType.ADMINISTRATOR,
-                IsActive = true
-            };
+            //User user1 = new User()
+            //{
+            //    FirstName = "Pera",
+            //    LastName = "Peric",
+            //    Email = "pera@gmail.com",
+            //    JMBG = "121346",
+            //    Password = "peki",
+            //    Gender = EGender.MALE,
+            //    Address = address,
+            //    UserType = EUserType.ADMINISTRATOR,
+            //    IsActive = true
+            //};
 
-            User user2 = new User
-            {
-                Email = "mika@gmail.com",
-                FirstName = "mika",
-                LastName = "Mikic",
-                JMBG = "121346",
-                Password = "zika",
-                Gender = EGender.FEMEALE,
-                UserType = EUserType.PROFESSOR,
-                IsActive = true,
-                Address = address
-            };
+            //User user2 = new User
+            //{
+            //    Email = "mika@gmail.com",
+            //    FirstName = "mika",
+            //    LastName = "Mikic",
+            //    JMBG = "121346",
+            //    Password = "zika",
+            //    Gender = EGender.FEMEALE,
+            //    UserType = EUserType.PROFESSOR,
+            //    IsActive = true,
+            //    Address = address
+            //};
 
-            Users.Add(user1);
+            //Users.Add(user1);
 
-            var professor = new Professor
-            {
-                User = user2
-            };
+            //var professor = new Professor
+            //{
+            //    User = user2
+            //};
 
-            Professors.Add(professor);
+            //Professors.Add(professor);
 
             //SchoolClass schoolClass1 = new SchoolClass
             //{

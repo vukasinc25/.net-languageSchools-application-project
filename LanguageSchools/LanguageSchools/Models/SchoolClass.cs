@@ -15,9 +15,8 @@ namespace LanguageSchools.Models
         //public Student Student { get; set; }
         public DateTime Date { get; set; }
         public string StartTime { get; set; }
-        public TimeSpan Duration { get; set; }
+        public string Duration { get; set; }
         public EState State { get; set; }
-        public bool IsReserved { get; set; }
         public bool IsActive { get; set; }
 
         public object Clone()
@@ -32,7 +31,6 @@ namespace LanguageSchools.Models
                 Duration = Duration,
                 Date = Date,
                 State = State,
-                IsReserved = IsReserved
             };
         }
     }

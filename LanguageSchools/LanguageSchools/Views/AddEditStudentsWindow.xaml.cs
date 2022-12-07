@@ -27,9 +27,10 @@ namespace LanguageSchools.Views
         public AddEditStudentsWindow()
         {
             InitializeComponent();
-
+            var adress = new Adress();
             var user = new User
             {
+                Adress= adress,
                 UserType = EUserType.STUDENT,
                 IsActive = true
             };

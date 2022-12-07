@@ -9,12 +9,12 @@ namespace LanguageSchools.Repositories
 {
     internal interface IAdressRepository
     {
-        List<Address> GetAll();
-        Address GetById(int id);
-        void Add(Address address);
-        void Add(List<Address> address);
-        void Set(List<Address> address);
-        void Update(int id, Address address);
+        List<Adress> GetAll();
+        Adress GetById(int id);
+        void Add(Adress address);
+        void Add(List<Adress> address);
+        void Set(List<Adress> address);
+        void Update(int id, Adress address);
         void Delete(int id);
     }
 }

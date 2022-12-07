@@ -17,7 +17,7 @@ namespace LanguageSchools.Models
         public string JMBG { get; set; }
         public EGender Gender { get; set; }
         public EUserType UserType { get; set; }
-        public Address Address { get; set; }
+        public Adress Adress { get; set; }
 
         public bool IsActive { get; set; }
         public bool IsValid { get; set; }
@@ -43,7 +43,7 @@ namespace LanguageSchools.Models
                 UserType = UserType,
                 Gender = Gender,
                 IsActive = IsActive,
-                Address = Address?.Clone() as Address
+                Adress = Adress?.Clone() as Adress
             };
         }
         public string Error 

@@ -25,6 +25,28 @@ namespace LanguageSchools.Views
         private IProfessorService professorService = new ProfessorService();
         private bool isAddMode;
         
+
+        public AddEditProfessorsWindow()
+        {
+            InitializeComponent();
+            var adress = new Adress();
+            var user = new User
+            {
+                Adress = adress,
+                UserType = EUserType.PROFESSOR,
+                IsActive = true
+            };
+
+            professor = new Professor
+            {
+                User = user
+
+            };
+
+            isAddMode = true;
+            DataContext = professor;
+        }
+
         public AddEditProfessorsWindow(Professor professor)
         {
             InitializeComponent();
@@ -36,26 +58,6 @@ namespace LanguageSchools.Views
             txtJMBG.IsReadOnly = true;
             txtEmail.IsReadOnly = true;
         }
-
-        public AddEditProfessorsWindow()
-        {
-            InitializeComponent();
-
-            var user = new User
-            {
-                UserType = EUserType.PROFESSOR,
-                IsActive = true
-            };
-
-            professor = new Professor
-            {
-                User = user
-            };
-
-            isAddMode = true;
-            DataContext = professor;
-        }
-
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (professor.User.IsValid)
