@@ -16,6 +16,9 @@ namespace LanguageSchools.Models
         public DateTime Date { get; set; }
         public string StartTime { get; set; }
         public string Duration { get; set; }
+        public Professor Professor { get; set; }
+        public Student Student { get; set; }
+
         public EState State { get; set; }
         public bool IsActive { get; set; }
 
@@ -29,6 +32,8 @@ namespace LanguageSchools.Models
                 //Student = Student?.Clone() as Student,
                 StartTime = StartTime,
                 Duration = Duration,
+                Professor = Professor?.Clone() as Professor,
+                Student = Student?.Clone() as Student,
                 Date = Date,
                 State = State,
             };

@@ -23,14 +23,20 @@ namespace LanguageSchools.Views
     {
         private SchoolClass schoolClass;
         private ISchoolClassesService schoolClassService = new SchoolClassesService();
+        private IProfessorService professorService = new ProfessorService();
+        private IStudentService studentService = new StudentService();
         private bool isAddMode;
         public AddEditSchoolClassesWindow()
         {
             InitializeComponent();
+            cbProfessor.ItemsSource = new List<Professor>(professorService.GetAll());
+            cbStudent.ItemsSource = new List<Student>(studentService.GetAll());
+
             schoolClass = new SchoolClass
             {
                 Date = DateTime.Today,
                 IsActive = true
+
                 //Id = 0
             };
 
@@ -40,6 +46,8 @@ namespace LanguageSchools.Views
         public AddEditSchoolClassesWindow(SchoolClass schoolClass)
         {
             InitializeComponent();
+            cbProfessor.ItemsSource = new List<Professor>(professorService.GetAll());
+            cbStudent.ItemsSource = new List<Student>(studentService.GetAll());
             this.schoolClass = schoolClass.Clone() as SchoolClass;
 
             DataContext = this.schoolClass;
@@ -52,6 +60,8 @@ namespace LanguageSchools.Views
         {
             if (isAddMode)
             {
+                schoolClass.Professor = cbProfessor.SelectedItem as Professor;
+                schoolClass.Student = cbStudent.SelectedItem as Student;
                 schoolClassService.Add(schoolClass);
             }
             else

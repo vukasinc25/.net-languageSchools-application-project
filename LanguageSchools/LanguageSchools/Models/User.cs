@@ -22,7 +22,8 @@ namespace LanguageSchools.Models
         public bool IsActive { get; set; }
         public bool IsValid { get; set; }
 
-        public User() {
+        public User()
+        {
             IsActive = true;
         }
 
@@ -46,7 +47,7 @@ namespace LanguageSchools.Models
                 Adress = Adress?.Clone() as Adress
             };
         }
-        public string Error 
+        public string Error
         {
             get
             {
@@ -75,8 +76,9 @@ namespace LanguageSchools.Models
             }
         }
 
-        public string this[string columnName] {
-            
+        public string this[string columnName]
+        {
+
             get
             {
                 IsValid = true;
@@ -90,7 +92,7 @@ namespace LanguageSchools.Models
                     IsValid = false;
                     return "Password cannot be empty!";
                 }
-                else if(columnName == "FirstName" && string.IsNullOrEmpty(FirstName))
+                else if (columnName == "FirstName" && string.IsNullOrEmpty(FirstName))
                 {
                     IsValid = false;
                     return "First name cannot be empty!";
@@ -99,14 +101,15 @@ namespace LanguageSchools.Models
                 {
                     IsValid = false;
                     return "Last name cannot be empty!";
-                } else if (columnName == "JMBG" && string.IsNullOrEmpty(JMBG))
+                }
+                else if (columnName == "JMBG" && string.IsNullOrEmpty(JMBG))
                 {
                     IsValid = false;
                     return "JMBG cannot be empty!";
                 }
 
                 return "";
-            } 
+            }
         }
     }
 }

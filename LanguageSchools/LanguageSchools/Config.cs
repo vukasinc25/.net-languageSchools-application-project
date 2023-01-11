@@ -9,5 +9,7 @@ namespace LanguageSchools
     class Config
     {
         public static readonly string dataFilePath = @"../../Resources/data.bin";
+        public static readonly string CONNECTION_STRING = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LanguageSchoolDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+
     }
 }
