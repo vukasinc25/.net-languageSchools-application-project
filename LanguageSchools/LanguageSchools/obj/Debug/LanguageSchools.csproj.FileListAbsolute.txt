@@ -71,3 +71,5 @@ C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\bin\Debug\Microsof
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.exe.config
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools_Content.g.cs
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\LanguageSchools.csproj.CopyComplete
+C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\UserLogin.g.cs
+C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\UserLogin.baml

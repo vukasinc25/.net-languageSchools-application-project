@@ -23,14 +23,14 @@ namespace LanguageSchools.Views
     {
         private SchoolClass schoolClass;
         private ISchoolClassesService schoolClassService = new SchoolClassesService();
-        private IProfessorService professorService = new ProfessorService();
-        private IStudentService studentService = new StudentService();
+        private IUserService professorService = new UserService();
+        private IUserService studentService = new UserService();
         private bool isAddMode;
         public AddEditSchoolClassesWindow()
         {
             InitializeComponent();
-            cbProfessor.ItemsSource = new List<Professor>(professorService.GetAll());
-            cbStudent.ItemsSource = new List<Student>(studentService.GetAll());
+            cbProfessor.ItemsSource = new List<User>(professorService.GetAll());
+            cbStudent.ItemsSource = new List<User>(studentService.GetAll());
 
             schoolClass = new SchoolClass
             {
@@ -46,8 +46,8 @@ namespace LanguageSchools.Views
         public AddEditSchoolClassesWindow(SchoolClass schoolClass)
         {
             InitializeComponent();
-            cbProfessor.ItemsSource = new List<Professor>(professorService.GetAll());
-            cbStudent.ItemsSource = new List<Student>(studentService.GetAll());
+            cbProfessor.ItemsSource = new List<User>(professorService.GetAll());
+            cbStudent.ItemsSource = new List<User>(studentService.GetAll());
             this.schoolClass = schoolClass.Clone() as SchoolClass;
 
             DataContext = this.schoolClass;
@@ -60,8 +60,8 @@ namespace LanguageSchools.Views
         {
             if (isAddMode)
             {
-                schoolClass.Professor = cbProfessor.SelectedItem as Professor;
-                schoolClass.Student = cbStudent.SelectedItem as Student;
+                schoolClass.Professor = cbProfessor.SelectedItem as User;
+                schoolClass.Student = cbStudent.SelectedItem as User;
                 schoolClassService.Add(schoolClass);
             }
             else

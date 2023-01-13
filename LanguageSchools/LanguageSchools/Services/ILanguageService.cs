@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanguageSchools.Models
+namespace LanguageSchools.Services
 {
-    public enum EGender
+    internal interface ILanguageService
     {
-        MALE, FEMEALE, OTHER
     }
 }

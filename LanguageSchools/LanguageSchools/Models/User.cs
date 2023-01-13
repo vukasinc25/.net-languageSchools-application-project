@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace LanguageSchools.Models
     [Serializable]
     public class User : ICloneable, IDataErrorInfo
     {
+        public int Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
@@ -17,10 +19,23 @@ namespace LanguageSchools.Models
         public string JMBG { get; set; }
         public EGender Gender { get; set; }
         public EUserType UserType { get; set; }
-        public Adress Adress { get; set; }
-
+        public string Street { get; set; }
+        public string StreetNumber { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
         public bool IsActive { get; set; }
         public bool IsValid { get; set; }
+        private School school;
+        public School School
+        {
+            get => school;
+            set
+            {
+                school = value;
+                SchoolId = school?.Id;
+            }
+        }
+        public int? SchoolId { get; set; }
 
         public User()
         {
@@ -29,7 +44,7 @@ namespace LanguageSchools.Models
 
         public override string ToString()
         {
-            return $"[User] {FirstName} {LastName}, {Email}";
+            return FirstName;
         }
 
         public object Clone()
@@ -43,8 +58,12 @@ namespace LanguageSchools.Models
                 JMBG = JMBG,
                 UserType = UserType,
                 Gender = Gender,
+                Street = Street,
+                StreetNumber = StreetNumber,
+                City = City,
+                Country = Country,
                 IsActive = IsActive,
-                Adress = Adress?.Clone() as Adress
+                School = School?.Clone() as School
             };
         }
         public string Error

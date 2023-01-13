@@ -1,0 +1,36 @@
+﻿<Window x:Class="LanguageSchools.Views.UserLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LanguageSchools.Views"
+        mc:Ignorable="d"
+        Title="UserLogin" Height="500" Width="450">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="65"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Margin" Value="7"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">User</Label>
+        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">Login</Label>
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">JMBG:</Label>
+        <TextBox Width="200" Height="20" Name="UserLoginJmbg" Grid.Row="1" Grid.Column="1"></TextBox>
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">Password:</Label>
+        <TextBox Width="200" Height="20" Name="UserLoginPassword" Grid.Row="2" Grid.Column="1"></TextBox>
+        <Button Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right">Save</Button>
+        <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left">Cancel</Button>
+    </Grid>
+</Window>

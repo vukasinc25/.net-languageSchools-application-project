@@ -21,44 +21,40 @@ namespace LanguageSchools.Views
     /// </summary>
     public partial class AddEditStudentsWindow : Window
     {
-        private Student student;
-        private IStudentService studentService = new StudentService();
+        private User student;
+        private IUserService studentService = new UserService();
         private bool isAddMode;
         public AddEditStudentsWindow()
         {
             InitializeComponent();
-            var adress = new Adress();
             var user = new User
             {
-                Adress= adress,
                 UserType = EUserType.STUDENT,
                 IsActive = true
             };
 
-            student = new Student
-            {
-                User = user
-            };
+            //student = new User
+            //{
+            //    User = user
+            //};
 
             isAddMode = true;
             DataContext = student;
         }
 
-        public AddEditStudentsWindow(Student student)
+        public AddEditStudentsWindow(User student)
         {
             InitializeComponent();
-            this.student = student.Clone() as Student;
+            this.student = student.Clone() as User;
 
             DataContext = this.student;
 
             isAddMode = false;
-            //TxtJmbg.IsReadOnly = true;
-            //TxtEmail.IsReadOnly = true;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (student.User.IsValid)
+            if (student.IsValid)
             {
                 if (isAddMode)
                 {
@@ -66,7 +62,7 @@ namespace LanguageSchools.Views
                 }
                 else
                 {
-                    studentService.Update(student.User.Email, student);
+                    studentService.Update(student.Email, student);
                 }
 
                 DialogResult = true;

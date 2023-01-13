@@ -21,36 +21,34 @@ namespace LanguageSchools.Views
     /// </summary>
     public partial class AddEditProfessorsWindow : Window
     {
-        private Professor professor;
-        private IProfessorService professorService = new ProfessorService();
+        private User professor;
+        private IUserService professorService = new UserService();
         private bool isAddMode;
         
 
         public AddEditProfessorsWindow()
         {
             InitializeComponent();
-            var adress = new Adress();
             var user = new User
             {
-                Adress = adress,
                 UserType = EUserType.PROFESSOR,
                 IsActive = true
             };
 
-            professor = new Professor
-            {
-                User = user
+            //professor = new User
+            //{
+            //    User = user
 
-            };
+            //};
 
             isAddMode = true;
             DataContext = professor;
         }
 
-        public AddEditProfessorsWindow(Professor professor)
+        public AddEditProfessorsWindow(User professor)
         {
             InitializeComponent();
-            this.professor = professor.Clone() as Professor;
+            this.professor = professor.Clone() as User;
             
             DataContext = this.professor;
 
@@ -60,7 +58,7 @@ namespace LanguageSchools.Views
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (professor.User.IsValid)
+            if (professor.IsValid)
             {
                 if (isAddMode)
                 {
@@ -68,7 +66,7 @@ namespace LanguageSchools.Views
                 }
                 else
                 {
-                    professorService.Update(professor.User.Email, professor);
+                    professorService.Update(professor.Email, professor);
                 }
 
                 DialogResult = true;
