@@ -8,6 +8,7 @@ namespace LanguageSchools.Models
 {
     public class Language : ICloneable
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         private User professor;
         public User Professor
@@ -28,6 +29,7 @@ namespace LanguageSchools.Models
         {
             return new Language
             {
+                Id = Id,
                 Name = Name,
                 Professor = Professor?.Clone() as User
             };

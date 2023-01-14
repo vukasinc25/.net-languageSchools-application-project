@@ -29,7 +29,7 @@
                                 <RowDefinition Height="200"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="250"></RowDefinition>
+                                <RowDefinition Height="200"></RowDefinition>
                         </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" Grid.Row="0">
                                 <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Language:</Label>
@@ -46,7 +46,7 @@
                                     <!--<Button Name="BtnShowProfessors" Click="BtnShowProfessors_Click" >Show Professors</Button>-->
                                 </WrapPanel>
                             </StackPanel>
-                        <DataGrid CanUserAddRows="False" IsReadOnly="True" Name="DgClasses" AutoGeneratingColumn="DgClasses_AutoGeneratingColumn" Grid.Row="1"></DataGrid>
+                        <DataGrid CanUserAddRows="False" IsReadOnly="True" Name="DgSchools" AutoGeneratingColumn="DgSchools_AutoGeneratingColumn" Grid.Row="1"></DataGrid>
                         
                         <StackPanel Orientation="Horizontal" Grid.Row="2">
                             
@@ -130,7 +130,7 @@
                         </WrapPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Name="TiAllTables" Header="All Tables">
+                <TabItem Name="TiAllTables" Header="Admin">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="200"></RowDefinition>

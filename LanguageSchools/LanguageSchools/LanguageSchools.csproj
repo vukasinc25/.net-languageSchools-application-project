@@ -73,12 +73,16 @@
     <Compile Include="Models\School.cs" />
     <Compile Include="Models\SchoolClass.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Repositories\ILanguageRepository.cs" />
     <Compile Include="Repositories\ISchoolClassRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\LanguageRepository.cs" />
     <Compile Include="Repositories\SchoolClassRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Services\ISchoolClassesService.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\SchoolClassesService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Views\AddEditProfessorsWindow.xaml.cs">
@@ -87,6 +91,9 @@
     <Compile Include="Views\AddEditSchoolClassesWindow.xaml.cs">
       <DependentUpon>AddEditSchoolClassesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddEditSchoolsWindow.xaml.cs">
+      <DependentUpon>AddEditSchoolsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddEditStudentsWindow.xaml.cs">
       <DependentUpon>AddEditStudentsWindow.xaml</DependentUpon>
     </Compile>
@@ -94,6 +101,10 @@
       <DependentUpon>UserLogin.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AddEditSchoolClassesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddEditSchoolsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

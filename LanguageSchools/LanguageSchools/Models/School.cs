@@ -26,7 +26,7 @@ namespace LanguageSchools.Models
             set
             {
                 language = value;
-                //LanguageId = language?.Id;
+                LanguageId = language?.Id;
             }
         }
         public int? LanguageId { get; set; }

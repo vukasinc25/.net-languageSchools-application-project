@@ -47,6 +47,7 @@ namespace LanguageSchools
             DgClassesAll.ItemsSource = schoolClasses;
             
         }
+        //--------------------PROFESSOR--------------------//
         private void BtnAddProfessors_Click(object sender, RoutedEventArgs e)
         {
             var addEditProfessorWindow = new AddEditProfessorsWindow();
@@ -94,6 +95,7 @@ namespace LanguageSchools
             }
         }
 
+        //--------------------STUDENT--------------------//
         private void BtnAddStudent_Click(object sender, RoutedEventArgs e)
         {
             var addEditStudentWindow = new AddEditStudentsWindow();
@@ -143,6 +145,8 @@ namespace LanguageSchools
                 e.Column.Visibility = Visibility.Collapsed;
             }
         }
+
+        //--------------------CLASS--------------------//
         private void DgClasses_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.PropertyType == typeof(DateTime))
@@ -150,7 +154,6 @@ namespace LanguageSchools
                 (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
             }
         }
-
         private void BtnAddClasses_Click(object sender, RoutedEventArgs e)
         {
             var addEditSchClassWindow = new AddEditSchoolClassesWindow();
@@ -162,7 +165,6 @@ namespace LanguageSchools
                 RefreshDataGrid();
             }
         }
-
         private void BtnEditClasses_Click(object sender, RoutedEventArgs e)
         {
             var selectedIndex = DgClasses.SelectedIndex;
@@ -181,7 +183,6 @@ namespace LanguageSchools
                 }
             }
         }
-
         private void BtnDeleteClasses_Click(object sender, RoutedEventArgs e)
         {
             var selectedClass = DgClasses.SelectedItem as SchoolClass;
@@ -194,54 +195,55 @@ namespace LanguageSchools
             }
         }
 
-        //private void BtnAddSchools_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var addEditSchoolWindow = new AddEditSchoolsWindow();
+        //--------------------SCHOOL--------------------//
+        private void BtnAddSchools_Click(object sender, RoutedEventArgs e)
+        {
+            var AddEditSchoolWindow = new AddEditSchoolWindow();
 
-        //    var successeful = addEditSchoolWindow.ShowDialog();
+            var successeful = AddEditSchoolWindow.showdialog();
 
-        //    if ((bool)successeful)
-        //    {
-        //        RefreshDataGrid();
-        //    }
-        //}
+            if ((bool)successeful)
+            {
+                RefreshDataGrid();
+            }
+        }
 
-        //private void BtnEditSchools_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var selectedIndex = DgSchools.SelectedIndex;
+        private void btnEditSchools_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedindex = dgSchools.selectedindex;
 
-        //    if (selectedIndex >= 0)
-        //    {
-        //        var students = studentService.GetAll();
+            if (selectedindex >= 0)
+            {
+                var students = studentService.getall();
 
-        //        var addEditStudentWindow = new AddEditStudentsWindow(students[selectedIndex]);
+                var addeditstudentwindow = new addEditStudentsWindow(students[selectedindex]);
 
-        //        var successeful = addEditStudentWindow.ShowDialog();
+                var successeful = addeditstudentwindow.showdialog();
 
-        //        if ((bool)successeful)
-        //        {
-        //            RefreshDataGrid();
-        //        }
-        //    }
-        //}
+                if ((bool)successeful)
+                {
+                    RefreshDataGrid();
+                }
+            }
+        }
 
-        //private void BtnDeleteSchools_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var selectedUser = DgStudents.SelectedItem as User;
+        private void btnDeleteSchools_Click(object sender, RoutedEventArgs e)
+        {
+            var selecteduser = dgStudents.selecteditem as User;
 
-        //    if (selectedUser != null)
-        //    {
-        //        studentService.Delete(selectedUser.Email);
-        //        RefreshDataGrid();
-        //    }
-        //}
+            if (selecteduser != null)
+            {
+                studentService.delete(selecteduser.email);
+                RefreshDataGrid();
+            }
+        }
 
-        //private void DgSchols_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        //{
-        //    if (e.PropertyName == "Error" || e.PropertyName == "IsValid")
-        //    {
-        //        e.Column.Visibility = Visibility.Collapsed;
-        //    }
-        //}
+        private void dgSchools_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyType == "error" || e.PropertyType == "isvalid")
+            {
+                e.Column.Visibility = Visibility.collapsed;
+            }
+        }
     }
 }
