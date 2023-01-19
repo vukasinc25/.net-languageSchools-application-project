@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 
 namespace LanguageSchools.Models
 {
-    //Škola – šifra, naziv,
-    //adresa na kojoj se nalazi,
-    //lista jezika koje je moguće pohađati
     public class School : ICloneable, IDataErrorInfo
     {
         public int Id { get; set; }
@@ -34,7 +31,7 @@ namespace LanguageSchools.Models
         }
         public override string ToString()
         {
-            return base.ToString();
+            return Name;
         }
         public string Error
         {

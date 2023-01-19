@@ -20,11 +20,17 @@ namespace LanguageSchools.Views
     {
         private User professor;
         private IUserService professorService = new UserService();
+        private ISchoolService schoolService = new SchoolService();
+        private ILanguageService languageService = new LanguageService();
         private bool isAddMode;
         
         public AddEditProfessorsWindow()
         {
             InitializeComponent();
+            cbSchool.ItemsSource = new List<School>(schoolService.GetAll().Where(p => p.IsActive));
+            cbSchool.SelectedItem = cbSchool.Items[0];
+            cbLanguage.ItemsSource = new List<Language>(languageService.GetAll().Where(p => p.IsActive));
+            cbLanguage.SelectedItem = cbLanguage.Items[0];
             professor = new User
             {
                 UserType = EUserType.PROFESSOR,
@@ -39,6 +45,15 @@ namespace LanguageSchools.Views
         {
             InitializeComponent();
             this.professor = professor.Clone() as User;
+            List<School> schools = schoolService.GetAll().Where(p => p.IsActive).ToList();
+            cbSchool.ItemsSource = schools;
+            cbSchool.SelectedValuePath = "Id";
+            cbSchool.SelectedValue = this.professor.School.Id;
+
+            List<Language> languages = languageService.GetAll().Where(p => p.IsActive).ToList();
+            cbLanguage.ItemsSource = languages;
+            cbLanguage.SelectedValuePath = "Id";
+            //cbLanguage.SelectedValue = this.professor
             
             DataContext = this.professor;
 
@@ -48,6 +63,8 @@ namespace LanguageSchools.Views
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            professor.School = (School)cbSchool.SelectedItem;
+            //professor.Languages = (Language)cbLanguage.SelectedItem;
             if (professor.IsValid)
             {
                 if (isAddMode)

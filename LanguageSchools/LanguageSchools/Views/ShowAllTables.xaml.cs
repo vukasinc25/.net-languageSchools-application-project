@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 
 namespace LanguageSchools.Views
 {
-    /// <summary>
-    /// Interaction logic for ShowAllTables.xaml
-    /// </summary>
     public partial class ShowAllTables : Window
     {
         private SchoolService schoolService = new SchoolService();
         private SchoolClassesService schoolClassService = new SchoolClassesService();
         private UserService professorService = new UserService();
         private UserService studentService = new UserService();
+        private LanguageService languageService= new LanguageService();
 
         public ShowAllTables()
         {
@@ -36,14 +34,19 @@ namespace LanguageSchools.Views
             List<School> schools = schoolService.GetAll().Where(p => p.IsActive).ToList();
             DgSchools.ItemsSource = schools;
 
-            List<User> usersStudents = studentService.GetAll().Where(p => p.UserType == EUserType.STUDENT && p.IsActive).ToList();
-            DgStudents.ItemsSource = usersStudents;
+            List<SchoolClass> schoolClasses = schoolClassService.GetAll().Where(p => p.IsActive).ToList();
+            DgClasses.ItemsSource = schoolClasses;
 
             List<User> usersProfessors = professorService.GetAll().Where(p => p.UserType == EUserType.PROFESSOR && p.IsActive).ToList();
             DgProfessors.ItemsSource = usersProfessors;
 
-            List<SchoolClass> schoolClasses = schoolClassService.GetAll().Where(p => p.IsActive).ToList();
-            DgClasses.ItemsSource = schoolClasses;
+            List<User> usersStudents = studentService.GetAll().Where(p => p.UserType == EUserType.STUDENT && p.IsActive).ToList();
+            DgStudents.ItemsSource = usersStudents;
+
+            List<Language> languages = languageService.GetAll().Where(p => p.IsActive).ToList();
+            DgLanguages.ItemsSource = languages;
+
+
         }
         //--------------------SCHOOL--------------------//
         #region School
@@ -162,9 +165,7 @@ namespace LanguageSchools.Views
             if (selectedItem != null)
             {
                 var professors = professorService.GetAll();
-
                 var addEditProfessorWindow = new AddEditProfessorsWindow((User)selectedItem);
-
                 var successeful = addEditProfessorWindow.ShowDialog();
 
                 if ((bool)successeful)
@@ -238,6 +239,55 @@ namespace LanguageSchools.Views
             if (e.PropertyName == "Error" || e.PropertyName == "IsValid")
             {
                 e.Column.Visibility = Visibility.Collapsed;
+            }
+        }
+        #endregion
+
+        //--------------------LANGUAGE--------------------//
+        #region Language
+        private void DgLanguages_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyName == "Error" || e.PropertyName == "IsValid")
+            {
+                e.Column.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void BtnAddLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            var addEditLanguagesWindow = new AddEditLanguagesWindow();
+
+            var successeful = addEditLanguagesWindow.ShowDialog();
+
+            if ((bool)successeful)
+            {
+                RefreshDataGrid();
+            }
+
+        }
+
+        private void BtnEditLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedIndex = DgLanguages.SelectedIndex;
+            if (selectedIndex >= 0)
+            {
+                var languages = languageService.GetAll();
+                var addEditLanguagesWindow = new AddEditLanguagesWindow(languages[selectedIndex]);
+                var successeful = addEditLanguagesWindow.ShowDialog();
+                if ((bool)successeful)
+                {
+                    RefreshDataGrid();
+                }
+            }
+        }
+
+        private void BtnDeleteLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedLanguage = DgLanguages.SelectedItem as Language;
+            if (selectedLanguage != null)
+            {
+                languageService.Delete(selectedLanguage.Id);
+                RefreshDataGrid();
             }
         }
         #endregion

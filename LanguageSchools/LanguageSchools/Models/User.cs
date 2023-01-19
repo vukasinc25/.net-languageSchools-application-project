@@ -37,17 +37,17 @@ namespace LanguageSchools.Models
             }
         }
         public int? SchoolId { get; set; }
+        public List<Language> Languages { get; set; }
 
         public User()
         {
             IsActive = true;
+            Languages = new List<Language>();
         }
-
         public override string ToString()
         {
             return FirstName;
         }
-
         public object Clone()
         {
             return new User
@@ -65,7 +65,7 @@ namespace LanguageSchools.Models
                 City = City,
                 Country = Country,
                 IsActive = IsActive,
-                School = School?.Clone() as School
+                School = School?.Clone() as School,
             };
         }
         public string Error

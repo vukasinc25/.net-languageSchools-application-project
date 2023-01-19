@@ -12,7 +12,7 @@ namespace LanguageSchools.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool isActive { get; set; }
+        public bool IsActive { get; set; }
         public bool IsValid { get; set; }
         //private User professor;
         //public User Professor
@@ -35,6 +35,7 @@ namespace LanguageSchools.Models
             {
                 Id = Id,
                 Name = Name,
+                IsActive= IsActive
             };
         }
         public string Error

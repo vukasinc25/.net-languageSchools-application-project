@@ -77,3 +77,5 @@ C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\Sh
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\ShowAllTables.baml
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\LoginWindow.g.cs
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\LoginWindow.baml
+C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\AddEditLanguagesWindow.g.cs
+C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\obj\Debug\Views\AddEditLanguagesWindow.baml

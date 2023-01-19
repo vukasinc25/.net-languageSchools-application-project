@@ -57,7 +57,7 @@
                         <DataGrid Grid.Row="4" CanUserAddRows="False" IsReadOnly="True" Name="DgProfessors" AutoGeneratingColumn="DgProfessors_AutoGeneratingColumn"></DataGrid>
                     </Grid>
                 </TabItem>
-                <TabItem Name="TiProfile" Header="Profile">
+                <TabItem Name="TiProfile" Header="All Tables">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>

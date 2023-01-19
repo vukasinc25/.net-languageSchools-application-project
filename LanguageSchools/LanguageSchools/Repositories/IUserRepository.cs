@@ -11,7 +11,7 @@ namespace LanguageSchools.Repositories
     {
         List<User> GetAll();
         User GetById(int? id);
-        int Add(User user);
+        void Add(User user);
         void Update(int id, User user);
         void Delete(int id);
     }

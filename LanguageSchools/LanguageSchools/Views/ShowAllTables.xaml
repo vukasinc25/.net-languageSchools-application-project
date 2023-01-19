@@ -24,6 +24,8 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="200"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         
         <DataGrid CanUserAddRows="False" IsReadOnly="True" Name="DgSchools" AutoGeneratingColumn="DgSchools_AutoGeneratingColumn" Grid.Row="0"></DataGrid>
@@ -31,7 +33,6 @@
             <Button Name="BtnAddSchool" Click="BtnAddSchool_Click">Add</Button>
             <Button Name="BtnEditSchool" Click="BtnEditSchool_Click">Edit</Button>
             <Button Name="BtnDeleteSchool" Click="BtnDeleteSchool_Click">Delete</Button>
-            <!--<Button Name="BtnShowProfessors" Click="BtnShowProfessors_Click" >Show Professors</Button>-->
         </WrapPanel>
         
         <DataGrid Grid.Row="2" CanUserAddRows="False" IsReadOnly="True" Name="DgClasses"
@@ -57,6 +58,14 @@
                 <Button Name="BtnEditStudent" Click="BtnEditStudent_Click">Edit</Button>
                 <Button Name="BtnDeleteStudent" Click="BtnDeleteStudent_Click">Delete</Button>
             </WrapPanel>
-    </Grid>
+
+            <DataGrid Grid.Row="8" CanUserAddRows="False" IsReadOnly="True" Name="DgLanguages"
+                        AutoGeneratingColumn="DgLanguages_AutoGeneratingColumn"></DataGrid>
+            <WrapPanel Grid.Row="9" HorizontalAlignment="Right">
+                <Button Name="BtnAddLanguage" Click="BtnAddLanguage_Click">Add</Button>
+                <Button Name="BtnEditLanguage" Click="BtnEditLanguage_Click">Edit</Button>
+                <Button Name="BtnDeleteLanguage" Click="BtnDeleteLanguage_Click">Delete</Button>
+            </WrapPanel>
+        </Grid>
     </ScrollViewer>
 </Window>

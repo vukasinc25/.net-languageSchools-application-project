@@ -5,13 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LanguageSchools.Views"
         mc:Ignorable="d"
-        Title="Professor" Height="500" Width="450">
+        Title="Professor" Height="550" Width="450">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="65"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Margin" Value="7"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="23*"></ColumnDefinition>
             <ColumnDefinition Width="76*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="37*"></RowDefinition>
             <RowDefinition Height="37*"></RowDefinition>
             <RowDefinition Height="37*"></RowDefinition>
             <RowDefinition Height="37*"></RowDefinition>
@@ -134,18 +142,21 @@
                  Margin="5,5,5,5"
                  Text="{Binding Path = Country, ValidatesOnDataErrors=True}"></TextBox>
 
+        <Label Grid.Column="0" Grid.Row="10" Name="lblSchool" Content="Schools" HorizontalAlignment="Right"></Label>
+        <ComboBox Grid.Column="1" Grid.Row="10" Name="cbSchool" Margin="5,5,5,5"></ComboBox>
+
+        <Label Grid.Column="0" Grid.Row="11" Name="lblLanguages" Content="Language" HorizontalAlignment="Right"></Label>
+        <ComboBox Grid.Column="1" Grid.Row="11" Name="cbLanguage" Margin="5,5,5,5"></ComboBox>
+
         <Button Name="btnSave"
                 Grid.Column="1"
-                Grid.Row="10"
-                Margin="158,21,108,20"
+                Grid.Row="12"
                 Click="btnSave_Click" Grid.RowSpan="2">Save</Button>
         <Button Name="btnCancel"
                 Grid.Column="1"
-                Grid.Row="10"
-                Height="35"
-                Width="65"
-                Margin="257,26,23,20"
-                Click="btnCancel_Click" Grid.RowSpan="2">Cancel</Button>
+                Grid.Row="12"
+                Margin="225,8,55,8"
+                Click="btnCancel_Click">Cancel</Button>
 
     </Grid>
 </Window>

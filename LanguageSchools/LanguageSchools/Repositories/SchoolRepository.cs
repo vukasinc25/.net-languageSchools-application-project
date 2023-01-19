@@ -85,11 +85,11 @@ namespace LanguageSchools.Repositories
             return schools;
         }
 
-        public School GetById(int id)
+        public School GetById(int? id)
         {
             using (SqlConnection conn = new SqlConnection(Config.CONNECTION_STRING))
             {
-                string commandText = $"select * from dbo.Schools where Id={id}";
+                string commandText = $"select * from Schools where Id={id}";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(commandText, conn);
 
                 DataSet ds = new DataSet();

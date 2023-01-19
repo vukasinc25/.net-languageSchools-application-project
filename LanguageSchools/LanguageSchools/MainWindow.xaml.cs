@@ -28,6 +28,7 @@ namespace LanguageSchools
         public MainWindow()
         {
             InitializeComponent();
+            showButtons();
             //Data.Load();
             RefreshDataGrid();
         }
@@ -277,6 +278,7 @@ namespace LanguageSchools
         {
             var loginWindow = new LoginWindow();
             var successeful = loginWindow.ShowDialog();
+            showButtons();
             if ((bool)successeful)
             {
                 RefreshDataGrid();
@@ -289,10 +291,12 @@ namespace LanguageSchools
             if (loggedUser.JMBG == null)
             {
                 MessageBox.Show("No User is Logged In");
+                showButtons();
             }
             else
             {
                 Data.Instance.loggedUser = new User();
+                showButtons();
                 MessageBox.Show("Successfully Logged Out");
             }
         }
@@ -301,6 +305,7 @@ namespace LanguageSchools
         {
             if (Data.Instance.loggedUser.JMBG != null)
             {
+                btnProfile.Visibility = Visibility.Visible;
                 if (Data.Instance.loggedUser.UserType == EUserType.STUDENT)
                 {
                     btnLogin.Visibility = Visibility.Collapsed;
@@ -316,6 +321,12 @@ namespace LanguageSchools
                     btnLogin.Visibility = Visibility.Collapsed;
                     btnLogout.Visibility = Visibility.Visible;
                 }
+            }
+            else
+            {
+                btnProfile.Visibility = Visibility.Collapsed;
+                btnLogin.Visibility = Visibility.Visible;
+                btnLogout.Visibility = Visibility.Collapsed;
             }
         }
 

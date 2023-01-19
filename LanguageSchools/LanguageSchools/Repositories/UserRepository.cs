@@ -16,11 +16,37 @@ namespace LanguageSchools.Repositories
 {
     class UserRepository : IUserRepository
     {
+        SchoolRepository schoolRepository = new SchoolRepository();
+        LanguageRepository languageRepository= new LanguageRepository();
         public UserRepository()
         {
         }
+        //public List<Language> GetAllLanguages()
+        //{
+        //    List<Language> languages = new List<Language>();
 
-        public int Add(User user)
+        //    using (SqlConnection conn = new SqlConnection(Config.CONNECTION_STRING))
+        //    {
+        //        string commandText = "select * from Languages";
+        //        SqlDataAdapter dataAdapter = new SqlDataAdapter(commandText, conn);
+
+        //        DataSet ds = new DataSet();
+
+        //        dataAdapter.Fill(ds, "Languages");
+
+        //        foreach (DataRow row in ds.Tables["Languages"].Rows)
+        //        {
+        //            var language = new Language
+        //            {
+        //                Id = (int)row["Id"],
+                        
+        //            };
+
+        //            languages.Add(language);
+        //        }
+        //    }
+        //}
+        public void Add(User user)
         {
             using (SqlConnection conn = new SqlConnection(Config.CONNECTION_STRING))
             {
@@ -46,8 +72,24 @@ namespace LanguageSchools.Repositories
                 command.Parameters.Add(new SqlParameter("Country", user.Country));
                 command.Parameters.Add(new SqlParameter("SchoolId", (object)user.SchoolId?? DBNull.Value));
 
+                command.ExecuteScalar();
 
-                return (int)command.ExecuteScalar();
+                int professorId2 = GetAll().Max(p => p.Id);
+                User professorId = GetById(professorId2);
+                if (user.UserType == EUserType.PROFESSOR)
+                {
+                    foreach (Language language in user.Languages)
+                    {
+                        SqlCommand command2 = conn.CreateCommand();
+                        command2.CommandText = @"
+                            insert into ProfessorsLanguages (professorId, languageId)
+                            output inserted.Id
+                            values (@professorId, @languageId)";
+
+                        command2.Parameters.Add(new SqlParameter("professorId", professorId));
+                        command2.Parameters.Add(new SqlParameter("languageId", language));
+                    }
+                }
             }
         }
 
@@ -73,10 +115,13 @@ namespace LanguageSchools.Repositories
             {
                 string commandText = "select * from dbo.Users";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(commandText, conn);
-
                 DataSet ds = new DataSet();
-
                 dataAdapter.Fill(ds, "Users");
+
+                string commandText2 = "select * from ProfessorsLanguages";
+                SqlDataAdapter dataAdapter2 = new SqlDataAdapter(commandText2, conn);
+                DataSet ds2 = new DataSet();
+                dataAdapter2.Fill(ds2, "ProfessorsLanguages");
 
                 foreach (DataRow row in ds.Tables["Users"].Rows)
                 {
@@ -97,7 +142,18 @@ namespace LanguageSchools.Repositories
                         Country = row["Country"] as string,
                         SchoolId = Convert.IsDBNull(row["SchoolId"]) ? null : (int?)row["SchoolId"]
                     };
+                    user.School = schoolRepository.GetById(user.SchoolId);
 
+                    if (user.UserType == EUserType.PROFESSOR)
+                    {
+                        foreach (DataRow row2 in ds2.Tables["ProfessorsLanguages"].Rows)
+                        {
+                            if (user.Id == (int)row2["professorId"])
+                            {
+                                user.Languages.Add(languageRepository.GetById((int)row2["languageId"]));
+                            }
+                        }
+                    }
                     users.Add(user);
                 }
             }
@@ -111,8 +167,12 @@ namespace LanguageSchools.Repositories
             {
                 string commandText = $"select * from dbo.Users where Id={id}";
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(commandText, conn);
-
                 DataSet ds = new DataSet();
+
+                string commandText2 = "select * from ProfessorsLanguages";
+                SqlDataAdapter dataAdapter2 = new SqlDataAdapter(commandText2, conn);
+                DataSet ds2 = new DataSet();
+                dataAdapter2.Fill(ds2, "ProfessorsLanguages");
 
                 dataAdapter.Fill(ds, "Users");
                 if (ds.Tables["Users"].Rows.Count > 0)
@@ -136,6 +196,13 @@ namespace LanguageSchools.Repositories
                         Country = row["Country"] as string,
                         SchoolId = Convert.IsDBNull(row["SchoolId"]) ? null : (int?)row["SchoolId"]
                     };
+                    foreach (DataRow row2 in ds2.Tables["ProfessorsLanguages"].Rows)
+                    {
+                        if (user.Id == (int)row2["professorId"])
+                        {
+                            user.Languages.Add(languageRepository.GetById((int)row2["languageId"]));
+                        }
+                    }
 
                     return user;
                 }
@@ -177,6 +244,16 @@ namespace LanguageSchools.Repositories
                 command.Parameters.Add(new SqlParameter("City", user.City));
                 command.Parameters.Add(new SqlParameter("Country", user.Country));
                 command.Parameters.Add(new SqlParameter("SchoolId", (object)user.SchoolId ?? DBNull.Value));
+
+                //if (user.UserType == EUserType.PROFESSOR) {
+                //    foreach (var i in user.Languages.Count()) {
+                //        SqlCommand command2 = conn.CreateCommand();
+                //        command2.CommandText = @"update ProfessorsLanguages set
+                //                            languageId = @LanguageId where professorId = @id";
+                //        command2.Parameters.Add(new SqlParameter("LanguageId", user.))
+                //        command2.Parameters.Add(new SqlParameter("professorId", id));
+                //    }
+                //}
 
                 command.ExecuteScalar();
             }

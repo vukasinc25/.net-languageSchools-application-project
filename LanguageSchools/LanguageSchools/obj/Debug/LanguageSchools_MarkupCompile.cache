@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\App.xaml
-7429551172
+820790298
 3394758458
-37363984907
+38441375749
 17-270000833
-Views\AddEditSchoolClassesWindow.xaml;Views\AddEditSchoolsWindow.xaml;Views\AddEditStudentsWindow.xaml;MainWindow.xaml;Views\AddEditProfessorsWindow.xaml;Views\ShowAllTables.xaml;Views\LoginWindow.xaml;
+Views\AddEditLanguagesWindow.xaml;Views\AddEditSchoolClassesWindow.xaml;Views\AddEditSchoolsWindow.xaml;Views\AddEditStudentsWindow.xaml;MainWindow.xaml;Views\AddEditProfessorsWindow.xaml;Views\ShowAllTables.xaml;Views\LoginWindow.xaml;
 
 False
 
