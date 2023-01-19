@@ -245,17 +245,24 @@ namespace LanguageSchools.Repositories
                 command.Parameters.Add(new SqlParameter("Country", user.Country));
                 command.Parameters.Add(new SqlParameter("SchoolId", (object)user.SchoolId ?? DBNull.Value));
 
-                //if (user.UserType == EUserType.PROFESSOR) {
-                //    foreach (var i in user.Languages.Count()) {
-                //        SqlCommand command2 = conn.CreateCommand();
-                //        command2.CommandText = @"update ProfessorsLanguages set
-                //                            languageId = @LanguageId where professorId = @id";
-                //        command2.Parameters.Add(new SqlParameter("LanguageId", user.))
-                //        command2.Parameters.Add(new SqlParameter("professorId", id));
-                //    }
-                //}
-
                 command.ExecuteScalar();
+
+                SqlCommand command3 = conn.CreateCommand();
+                command3.CommandText = $"delete from ProfessorsLanguages where userId = {id}";
+                command3.ExecuteScalar();
+                if (user.UserType == EUserType.PROFESSOR)
+                {
+                    foreach (Language language in user.Languages)
+                    {
+                        SqlCommand command2 = conn.CreateCommand();
+                        command2.CommandText = @"insert into ProfessorsLanguages (professorId, languageId)
+                                                 values (@professorId, languageId)";
+                        command2.Parameters.Add(new SqlParameter("LanguageId", user.Id));
+                        command2.Parameters.Add(new SqlParameter("professorId", language.Id));
+                        command2.ExecuteScalar();
+                    }
+                }
+
             }
         }
     }
