@@ -74,20 +74,20 @@ namespace LanguageSchools.Repositories
 
                 command.ExecuteScalar();
 
-                int professorId2 = GetAll().Max(p => p.Id);
-                User professorId = GetById(professorId2);
-                if (user.UserType == EUserType.PROFESSOR)
+                if (user.UserType == EUserType.PROFESSOR)   
                 {
+                    int professorId2 = GetAll().Max(p => p.Id);
+                    User professorId = GetById(professorId2);
                     foreach (Language language in user.Languages)
                     {
                         SqlCommand command2 = conn.CreateCommand();
                         command2.CommandText = @"
                             insert into ProfessorsLanguages (professorId, languageId)
-                            output inserted.Id
                             values (@professorId, @languageId)";
 
-                        command2.Parameters.Add(new SqlParameter("professorId", professorId));
-                        command2.Parameters.Add(new SqlParameter("languageId", language));
+                        command2.Parameters.Add(new SqlParameter("professorId", professorId.Id));
+                        command2.Parameters.Add(new SqlParameter("languageId", language.Id));
+                        command2.ExecuteScalar();
                     }
                 }
             }
@@ -142,10 +142,11 @@ namespace LanguageSchools.Repositories
                         Country = row["Country"] as string,
                         SchoolId = Convert.IsDBNull(row["SchoolId"]) ? null : (int?)row["SchoolId"]
                     };
-                    user.School = schoolRepository.GetById(user.SchoolId);
+                    
 
                     if (user.UserType == EUserType.PROFESSOR)
                     {
+                        user.School = schoolRepository.GetById(user.SchoolId);
                         foreach (DataRow row2 in ds2.Tables["ProfessorsLanguages"].Rows)
                         {
                             if (user.Id == (int)row2["professorId"])
@@ -247,19 +248,20 @@ namespace LanguageSchools.Repositories
 
                 command.ExecuteScalar();
 
-                SqlCommand command3 = conn.CreateCommand();
-                command3.CommandText = $"delete from ProfessorsLanguages where userId = {id}";
-                command3.ExecuteScalar();
+                
                 if (user.UserType == EUserType.PROFESSOR)
                 {
+                    SqlCommand command3 = conn.CreateCommand();
+                    command3.CommandText = $"delete from ProfessorsLanguages where professorId = {id}";
+                    command3.ExecuteScalar();
                     foreach (Language language in user.Languages)
                     {
                         SqlCommand command2 = conn.CreateCommand();
                         command2.CommandText = @"insert into ProfessorsLanguages (professorId, languageId)
-                                                 values (@professorId, languageId)";
-                        command2.Parameters.Add(new SqlParameter("LanguageId", user.Id));
+                                                 values (@professorId, @languageId)";
+                        command2.Parameters.Add(new SqlParameter("languageId", user.Id));
                         command2.Parameters.Add(new SqlParameter("professorId", language.Id));
-                        command2.ExecuteScalar();
+                            command2.ExecuteScalar();
                     }
                 }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LanguageSchools"
         mc:Ignorable="d"
-        Title="Language Schools" Height="800" Width="1150">
+        Title="Language Schools" Height="600" Width="1000">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Width" Value="65"></Setter>
@@ -16,72 +16,83 @@
     <DockPanel>
         <WrapPanel 
             DockPanel.Dock="Top"
-            HorizontalAlignment="Left">
+            HorizontalAlignment="Right">
             <Button Name="btnProfile" Click="btnProfile_Click">Profile</Button>
             <Button Name="btnLogin" Click="login_Click">Login</Button>
             <Button Name="btnLogout" Click="logout_Click">Logout</Button>
             <Button Name="btnRegister" Click="register_Click">Register</Button>
         </WrapPanel>
         <Grid>
-            <TabControl HorizontalAlignment="Stretch">
+            <TabControl HorizontalAlignment="Stretch" Name="AllTabs">
                 <TabItem Name="TiSchools" Header="Schools">
                     <Grid>
-                         <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="200"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="200"></RowDefinition>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="200"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="200"></RowDefinition>
                         </Grid.RowDefinitions>
-                        
-                            <StackPanel Orientation="Horizontal" Grid.Row="0">
-                                <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Language:</Label>
-                                <TextBox Name="CityInput" Width="150" Height="20" />
-                                <TextBlock Margin="15,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1">City:</TextBlock>
-                                <TextBox Name="LanguageInput" Width="150" Height="20"/>
-                            </StackPanel>
-                        <DataGrid CanUserAddRows="False" IsReadOnly="True" Name="DgSchools" AutoGeneratingColumn="DgSchools_AutoGeneratingColumn" Grid.Row="1"></DataGrid>
-                        
-                        <StackPanel Orientation="Horizontal" Grid.Row="2">
-                            <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Name:</Label>
-                            <TextBox Name="NameInput" Width="150" Height="20" />
-                            <Label Margin="10,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Surname:</Label>
-                            <TextBox Name="SurnameInput" Width="150" Height="20"/>
-                            <Label Margin="10,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Email:</Label>
-                            <TextBox Name="EmailInput" Width="150" Height="20"/>
-                            <Label Margin="10,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="3">Adress:</Label>
-                            <TextBox Name="AdressInput" Width="150" Height="20"/>
-                            <Label Margin="10,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1">Language</Label>
-                            <TextBox Name="LanguageInput2" Width="150" Height="20"/>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Search:</Label>
+                            <TextBox Name="schoolSearch" KeyUp="schoolSearch_KeyUp" Width="150" Height="20" />
+                            <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Search Language:</Label>
+                            <TextBox Name="schoolLanguageSearch" KeyUp="schoolLanguageSearch_KeyUp" Width="150" Height="20" />
                         </StackPanel>
-                        <DataGrid Grid.Row="4" CanUserAddRows="False" IsReadOnly="True" Name="DgProfessors" AutoGeneratingColumn="DgProfessors_AutoGeneratingColumn"></DataGrid>
+                        <DataGrid CanUserAddRows="False" IsReadOnly="True" Name="DgSchools" SelectionChanged="DgSchools_SelectionChanged" AutoGeneratingColumn="DgSchools_AutoGeneratingColumn" Grid.Row="1"></DataGrid>
+
+
+                        <DataGrid Grid.Row="4" CanUserAddRows="False" IsReadOnly="True" Name="DgProfessors"
+                                  MouseDoubleClick="DgProfessors_MouseDoubleClick"
+                                  AutoGeneratingColumn="DgProfessors_AutoGeneratingColumn"></DataGrid>
                     </Grid>
                 </TabItem>
-                <TabItem Name="TiProfile" Header="All Tables">
+                <TabItem Name="TiSearchedProfessors" Header="Professors">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="200"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Search:</Label>
+                            <TextBox Name="professorSearch" KeyUp="professorSearch_KeyUp" Width="150" Height="20"/>
+                            <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Search Language:</Label>
+                            <TextBox Name="professorLanguageSearch" KeyUp="professorLanguageSearch_KeyUp" Width="150" Height="20"/>
+                        </StackPanel>
+                        <DataGrid Grid.Row="1" CanUserAddRows="False" IsReadOnly="True" Name="DgSearchedProfessors"
+                            AutoGeneratingColumn="DgSearchedProfessors_AutoGeneratingColumn" ></DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="TiMyClasses" Header="My Classes">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"></RowDefinition>
+                            <RowDefinition Height="200"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <WrapPanel Grid.Row="0" Name="DateSearch">
+                            <Label Width="50" Height="50" Content="Search Date:"></Label>
+                            <DatePicker Width="150" Height="50" Name="txtDatePicker" SelectedDateChanged="txtDatePicker_SelectedDateChanged"/>
+                            <Button Name="btnClearDate" Content="Clear Date" MouseDoubleClick="btnClearDate_MouseDoubleClick"></Button>
+                        </WrapPanel>
+                        <DataGrid Grid.Row="1" CanUserAddRows="False" IsReadOnly="True" Name="DgLoggedClasses"
+                        AutoGeneratingColumn="DgLoggedClasses_AutoGeneratingColumn" MouseDoubleClick="DgLoggedClasses_MouseDoubleClick" ></DataGrid>
+
+                        <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,21,10,70">
+                            <Button Name="BtnUnscheduleClass" Click="BtnUnscheduleClass_Click">Unchedule</Button>
+                            <Button Name="BtnAddClass" Click="BtnAddClass_Click">Add</Button>
+                            <Button Name="BtnDeleteClass" Click="BtnDeleteClass_Click">Delete</Button>
+                        </WrapPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="TiAllTables" Header="All Tables">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button Name="ShowAllTables" Click="ShowAllTables_Click">All Tables</Button>
-                    </Grid>
-                </TabItem>
-                <TabItem Name="TiStudents" Header="Students">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="200"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="200"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <DataGrid Grid.Row="0" CanUserAddRows="False" IsReadOnly="True" Name="DgStudents"
-                        AutoGeneratingColumn="DgStudents_AutoGeneratingColumn" Margin="0,0,0,91" Grid.RowSpan="3"></DataGrid>
-
-                        <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,21,10,70" Grid.RowSpan="2">
-                            <Button Name="BtnAddStudent" Click="BtnAddStudent_Click">Add</Button>
-                            <Button Name="BtnEditStudent" Click="BtnEditStudent_Click">Edit</Button>
-                            <Button Name="BtnDeleteStudent" Click="BtnDeleteStudent_Click">Delete</Button>
-                        </WrapPanel>
                     </Grid>
                 </TabItem>
             </TabControl>

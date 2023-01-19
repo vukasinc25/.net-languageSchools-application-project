@@ -28,6 +28,7 @@ namespace LanguageSchools.Views
             InitializeComponent();
             cbProfessor.ItemsSource = new List<User>(professorService.GetAll().Where(p => p.UserType == EUserType.PROFESSOR));
             cbProfessor.SelectedItem = cbProfessor.Items[0];
+            txtDate.BlackoutDates.AddDatesInPast();
             //cbStudent.ItemsSource = new List<User>(studentService.GetAll());
             //cbStudent.SelectedItem= cbStudent.Items[0];
 
@@ -55,18 +56,25 @@ namespace LanguageSchools.Views
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             schoolClass.Professor = (User)cbProfessor.SelectedItem;
-            if (isAddMode)
+            if (!String.IsNullOrEmpty(txtStartTime.Text) && !String.IsNullOrEmpty(txtDuration.Text))
             {
-                schoolClass.Professor = cbProfessor.SelectedItem as User;
-                //schoolClass.Student = cbStudent.SelectedItem as User;
-                schoolClassService.Add(schoolClass);
+                if (isAddMode)
+                {
+                    schoolClass.Professor = cbProfessor.SelectedItem as User;
+                    //schoolClass.Student = cbStudent.SelectedItem as User;
+                    schoolClassService.Add(schoolClass);
+                }
+                else
+                {
+                    schoolClassService.Update(schoolClass.Id, schoolClass);
+                }
+                DialogResult = true;
+                Close();
             }
             else
             {
-                schoolClassService.Update(schoolClass.Id, schoolClass);
+                MessageBox.Show("One of the Fields is Empty");
             }
-            DialogResult = true;
-            Close();
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {

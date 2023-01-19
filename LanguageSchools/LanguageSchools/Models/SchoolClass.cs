@@ -41,6 +41,10 @@ namespace LanguageSchools.Models
         }
         public int? StudentId { get; set; }
         public int? ProfessorId { get; set; }
+        public override string ToString()
+        {
+            return Date.ToString();
+        }
         public object Clone()
         {
             return new SchoolClass
@@ -80,13 +84,13 @@ namespace LanguageSchools.Models
 
             get
             {
-                IsValid = true;
-                if (columnName == "Date" && string.IsNullOrEmpty(Date + ""))
-                {
-                    IsValid = false;
-                    return "Date cannot be empty!";
-                }
-                else if (columnName == "StartTime" && string.IsNullOrEmpty(StartTime))
+                //IsValid = true;
+                //if (columnName == "Date" && string.IsNullOrEmpty(Date + ""))
+                //{
+                //    IsValid = false;  
+                //    return "Date cannot be empty!";
+                //}
+                if (columnName == "StartTime" && string.IsNullOrEmpty(StartTime))
                 {
                     IsValid = false;
                     return "StartTime cannot be empty!";

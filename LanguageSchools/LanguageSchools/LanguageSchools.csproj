@@ -111,6 +111,12 @@
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ShowClassesStudents.xaml.cs">
+      <DependentUpon>ShowClassesStudents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShowProfessorsClasses.xaml.cs">
+      <DependentUpon>ShowProfessorsClasses.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\AddEditLanguagesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,6 +154,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShowClassesStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShowProfessorsClasses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

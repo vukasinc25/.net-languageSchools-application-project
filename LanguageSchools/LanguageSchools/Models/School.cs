@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace LanguageSchools.Models
         {
             return Name;
         }
+
         public string Error
         {
             get

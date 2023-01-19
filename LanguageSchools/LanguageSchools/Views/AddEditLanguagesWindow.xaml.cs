@@ -41,16 +41,19 @@ namespace LanguageSchools.Views
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (isAddMode)
+            if (!String.IsNullOrEmpty(txtName.Text))
             {
-                languageService.Add(language);
+                if (isAddMode)
+                {
+                    languageService.Add(language);
+                }
+                else
+                {
+                    languageService.Update(language.Id, language);
+                }
+                DialogResult = true;
+                Close();
             }
-            else
-            {
-                languageService.Update(language.Id, language);
-            }
-            DialogResult = true;
-            Close();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

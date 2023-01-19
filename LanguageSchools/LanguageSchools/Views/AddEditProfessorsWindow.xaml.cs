@@ -1,4 +1,5 @@
 ﻿using LanguageSchools.Models;
+using LanguageSchools.Repositories;
 using LanguageSchools.Services;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace LanguageSchools.Views
         private IUserService professorService = new UserService();
         private ISchoolService schoolService = new SchoolService();
         private ILanguageService languageService = new LanguageService();
+        private IUserRepository userRepository= new UserRepository();
         private bool isAddMode;
         
         public AddEditProfessorsWindow()
@@ -30,14 +32,14 @@ namespace LanguageSchools.Views
             cbSchool.ItemsSource = new List<School>(schoolService.GetAll().Where(p => p.IsActive));
             cbSchool.SelectedItem = cbSchool.Items[0];
             cbLanguage.ItemsSource = new List<Language>(languageService.GetAll().Where(p => p.IsActive));
-            cbLanguage.SelectedItem = cbLanguage.Items[0];
+            //cbLanguage.SelectedItem = cbLanguage.Items[0];
             professor = new User
             {
                 UserType = EUserType.PROFESSOR,
                 IsActive = true
             };
 
-            isAddMode = true;
+            isAddMode = true;   
             DataContext = professor;
         }
 
@@ -45,18 +47,40 @@ namespace LanguageSchools.Views
         {
             InitializeComponent();
             this.professor = professor.Clone() as User;
-            List<School> schools = schoolService.GetAll().Where(p => p.IsActive).ToList();
-            cbSchool.ItemsSource = schools;
-            cbSchool.SelectedValuePath = "Id";
-            cbSchool.SelectedValue = this.professor.School.Id;
+            if (Data.Instance.loggedUser.UserType == EUserType.PROFESSOR || this.professor.UserType == EUserType.PROFESSOR)
+            {
+                lblUserType.Visibility = Visibility.Collapsed;
+                cbUserType.Visibility = Visibility.Collapsed;
+                List<School> schools = schoolService.GetAll().Where(p => p.IsActive).ToList();
+                cbSchool.ItemsSource = schools;
+                cbSchool.SelectedValuePath = "Id";
+                cbSchool.SelectedValue = this.professor.School.Id;
 
-            List<Language> languages = languageService.GetAll().Where(p => p.IsActive).ToList();
-            cbLanguage.ItemsSource = languages;
-            cbLanguage.SelectedValuePath = "Id";
-            //cbLanguage.SelectedValue = this.professor
+                List<Language> languages = languageService.GetAll().Where(p => p.IsActive).ToList();
+                cbLanguage.ItemsSource = languages;
+                //cbLanguage.SelectedValuePath = "Id";
+                //cbLanguage.SelectedValue = this.professor
+                User usersLanguages = userRepository.GetById(professor.Id);
+                foreach (Language userLanguage in usersLanguages.Languages)
+                {
+                    foreach (Language language in languages)
+                    {
+                        if (userLanguage.Id == language.Id)
+                        {
+                            cbLanguage.SelectedItems.Add(language);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                
+                lblUserType.Visibility = Visibility.Visible;
+                cbUserType.Visibility = Visibility.Visible;
+            }
             
             DataContext = this.professor;
-
+                
             isAddMode = false;
             txtJMBG.IsReadOnly = true;
             txtEmail.IsReadOnly = true;
@@ -65,8 +89,14 @@ namespace LanguageSchools.Views
         {
             professor.School = (School)cbSchool.SelectedItem;
             //professor.Languages = (Language)cbLanguage.SelectedItem;
-            if (professor.IsValid)
+            if (!String.IsNullOrEmpty(txtEmail.Text) && !String.IsNullOrEmpty(txtPassword.Text) && !String.IsNullOrEmpty(txtFirstName.Text) &&
+                !String.IsNullOrEmpty(txtCountry.Text) && !String.IsNullOrEmpty(txtJMBG.Text) && !String.IsNullOrEmpty(txtLastName.Text)
+                && !String.IsNullOrEmpty(txtCity.Text) && !String.IsNullOrEmpty(txtNumber.Text) && !String.IsNullOrEmpty(txtStreet.Text))
             {
+                foreach (Language language in cbLanguage.SelectedItems)
+                {
+                    professor.Languages.Add(language);
+                }
                 if (isAddMode)
                 {
                     professorService.Add(professor);
@@ -74,10 +104,19 @@ namespace LanguageSchools.Views
                 else
                 {
                     professorService.Update(professor.Id, professor);
+                    if (this.professor.UserType == EUserType.ADMIN)
+                    {
+                        Data.Instance.loggedUser = professor;
+
+                    }
                 }
 
                 DialogResult = true;
                 Close();
+            }
+            else
+            {
+                MessageBox.Show("One of the Fields is Empty");
             }
         }
 
@@ -85,6 +124,11 @@ namespace LanguageSchools.Views
         {
             DialogResult = false;
             Close();
+        }
+
+        private void cbLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,17 @@
-﻿DROP TABLE ProfessorsLanguages, SchoolsLanguages, Languages, Schools, SchoolClasses, Users
+﻿use LanguageSchoolDB
+DROP TABLE ProfessorsLanguages, Languages, SchoolClasses, Users, Schools
 
 
+CREATE TABLE Schools
+(
+	id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	street VARCHAR(50) NOT NULL,
+	streetNumber VARCHAR(10) NOT NULL,
+	city VARCHAR(50),
+	country VARCHAR (50), 
+	isActive BIT NOT NULL
+)
 CREATE TABLE Users
 (
 	id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -16,19 +27,10 @@ CREATE TABLE Users
 	city VARCHAR(50) NOT NULL,
 	country VARCHAR (50) NOT NULL, 
 	isActive BIT NOT NULL,
-	schoolId INT NOT NULL
+	schoolId INT
+	FOREIGN KEY (schoolId) REFERENCES Schools (id)
 )
 
-CREATE TABLE Schools
-(
-	id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	name VARCHAR(50) NOT NULL,
-	street VARCHAR(50) NOT NULL,
-	streetNumber VARCHAR(10) NOT NULL,
-	city VARCHAR(50),
-	country VARCHAR (50), 
-	isActive BIT NOT NULL
-)
 
 CREATE TABLE SchoolClasses
 (
@@ -39,7 +41,7 @@ CREATE TABLE SchoolClasses
 	state VARCHAR(50) NOT NULL,
 	isActive BIT NOT NULL,
 	professorId INT NOT NULL,
-	studentId INT NOT NULL,
+	studentId INT
 	FOREIGN KEY (ProfessorId) REFERENCES Users (id),
 	FOREIGN KEY (StudentId) REFERENCES Users (id)
 )
@@ -49,15 +51,6 @@ CREATE TABLE Languages
 	id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	name VARCHAR(50) NOT NULL,
 	isActive BIT NOT NULL
-)
-
-CREATE TABLE SchoolsLanguages
-(
-	schoolId INT NOT NULL,
-	languageId INT NOT NULL,
-	PRIMARY KEY (schoolId, languageId),
-	FOREIGN KEY (schoolId) REFERENCES Schools (id),
-	FOREIGN KEY (languageId) REFERENCES Languages (id)
 )
 
 CREATE TABLE ProfessorsLanguages

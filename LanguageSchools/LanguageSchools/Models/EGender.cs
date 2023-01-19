@@ -8,6 +8,6 @@ namespace LanguageSchools.Models
 {
     public enum EGender
     {
-        MALE, FEMEALE, OTHER
+        MALE, FEMALE, OTHER
     }
 }

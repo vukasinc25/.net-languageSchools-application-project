@@ -43,7 +43,8 @@ namespace LanguageSchools.Views
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (school.IsValid)
+            if (!String.IsNullOrEmpty(txtName.Text) && !String.IsNullOrEmpty(txtStreet.Text) && !String.IsNullOrEmpty(txtNumber.Text)
+                && !String.IsNullOrEmpty(txtCity.Text) && !String.IsNullOrEmpty(txtCountry.Text))
             {
                 if (isAddMode)
                 {
@@ -56,6 +57,10 @@ namespace LanguageSchools.Views
 
                 DialogResult = true;
                 Close();
+            }
+            else
+            {
+                MessageBox.Show("One of the Fields is Empty");
             }
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)

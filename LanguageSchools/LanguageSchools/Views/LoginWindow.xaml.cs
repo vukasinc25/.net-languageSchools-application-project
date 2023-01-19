@@ -46,8 +46,9 @@ namespace LanguageSchools.Views
                 if (user != null)
                 {
                     Data.Instance.loggedUser = user;
-                    MainWindow mainWindow = new MainWindow();
+                    //MainWindow mainWindow = new MainWindow();
                     MessageBox.Show("Successful Login");
+                    DialogResult = true;
                     this.Close();
                 }
                 else

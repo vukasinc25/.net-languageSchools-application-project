@@ -87,7 +87,7 @@ namespace LanguageSchools.Views
         }
         private void DgSchools_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.PropertyName == "Error" || e.PropertyName == "IsValid")
+            if (e.PropertyName == "Error" || e.PropertyName == "IsValid" || e.PropertyName == "IsActive")
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }
@@ -98,9 +98,10 @@ namespace LanguageSchools.Views
         #region SchoolClass
         private void DgClasses_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.PropertyType == typeof(DateTime))
+            if (e.PropertyType == typeof(DateTime) && ( e.PropertyName == "Error" || e.PropertyName == "IsValid" || e.PropertyName == "IsActive"))
             {
                 (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
+                e.Column.Visibility = Visibility.Collapsed;
             }
         }
         private void BtnAddClass_Click(object sender, RoutedEventArgs e)
@@ -186,7 +187,7 @@ namespace LanguageSchools.Views
         }
         private void DgProfessors_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.PropertyName == "Error" || e.PropertyName == "IsValid")
+            if (e.PropertyName == "Error" || e.PropertyName == "IsValid" || e.PropertyName == "IsActive" || e.PropertyName == "Languages" || e.PropertyName == "Password")
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }
@@ -236,7 +237,7 @@ namespace LanguageSchools.Views
         }
         private void DgStudents_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.PropertyName == "Error" || e.PropertyName == "IsValid")
+            if (e.PropertyName == "Error" || e.PropertyName == "IsValid" || e.PropertyName == "IsActive" || e.PropertyName == "Languages" || e.PropertyName == "Password")
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }
@@ -247,7 +248,7 @@ namespace LanguageSchools.Views
         #region Language
         private void DgLanguages_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.PropertyName == "Error" || e.PropertyName == "IsValid")
+            if (e.PropertyName == "Error" || e.PropertyName == "IsValid" || e.PropertyName == "IsActive")
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }
@@ -292,5 +293,28 @@ namespace LanguageSchools.Views
         }
         #endregion
 
+        private void professorSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            DgProfessors.ItemsSource = professorService.GetAll().Where(p => p.IsActive == true && (p.UserType == EUserType.PROFESSOR) && (
+               p.FirstName.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.LastName.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.Email.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.Street.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.City.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.StreetNumber.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.Country.ToLower().Contains(professorSearch.Text.ToLower()))).ToList();
+        }
+
+        private void studentSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            DgStudents.ItemsSource = studentService.GetAll().Where(p => p.IsActive == true && (p.UserType == EUserType.STUDENT) && (
+               p.FirstName.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.LastName.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.Email.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.Street.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.City.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.StreetNumber.ToLower().Contains(professorSearch.Text.ToLower())
+            || p.Country.ToLower().Contains(professorSearch.Text.ToLower()))).ToList();
+        }
     }
 }

@@ -46,6 +46,8 @@
         <DataGrid Grid.Row="4" CanUserAddRows="False" IsReadOnly="True" Name="DgProfessors"
                         AutoGeneratingColumn="DgProfessors_AutoGeneratingColumn"></DataGrid>
         <WrapPanel Grid.Row="5" HorizontalAlignment="Right">
+            <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Search:</Label>
+            <TextBox Name="professorSearch" KeyUp="professorSearch_KeyUp" Width="150" Height="20"/>
             <Button Name="BtnAddProfessor" Click="BtnAddProfessor_Click">Add</Button>
             <Button Name="BtnEditProfessor" Click="BtnEditProfessor_Click">Edit</Button>
             <Button Name="BtnDeleteProfessor" Click="BtnDeleteProfessor_Click">Delete</Button>
@@ -54,6 +56,8 @@
         <DataGrid Grid.Row="6" CanUserAddRows="False" IsReadOnly="True" Name="DgStudents"
                         AutoGeneratingColumn="DgStudents_AutoGeneratingColumn"></DataGrid>
             <WrapPanel Grid.Row="7" HorizontalAlignment="Right">
+                <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Search:</Label>
+                <TextBox Name="studentSearch" KeyUp="studentSearch_KeyUp" Width="150" Height="20"/>
                 <Button Name="BtnAddStudent" Click="BtnAddStudent_Click">Add</Button>
                 <Button Name="BtnEditStudent" Click="BtnEditStudent_Click">Edit</Button>
                 <Button Name="BtnDeleteStudent" Click="BtnDeleteStudent_Click">Delete</Button>

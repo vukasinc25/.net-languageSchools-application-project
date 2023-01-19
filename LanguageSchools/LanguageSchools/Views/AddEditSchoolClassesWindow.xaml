@@ -47,7 +47,7 @@
 
         <TextBox Grid.Column="1"
                  Grid.Row="1"
-                 Name="txtFirstName"
+                 Name="txtStartTime"
                  Margin="5,5,5,5"
                  Text="{Binding Path=StartTime}"></TextBox>
 
