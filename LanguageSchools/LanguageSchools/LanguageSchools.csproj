@@ -66,6 +66,7 @@
     </ApplicationDefinition>
     <Compile Include="Config.cs" />
     <Compile Include="CustomExceptions\UserNotFoundException.cs" />
+    <Compile Include="Models\Data.cs" />
     <Compile Include="Models\EGender.cs" />
     <Compile Include="Models\EState.cs" />
     <Compile Include="Models\EUserType.cs" />

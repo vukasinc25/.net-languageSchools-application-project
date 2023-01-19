@@ -35,11 +35,12 @@ namespace LanguageSchools.Models
                 {
                     instance = new Data();
                 }
-                
+
                 return instance;
             }
 
             private set => instance = value;
-       
+
+        }
     }
 }

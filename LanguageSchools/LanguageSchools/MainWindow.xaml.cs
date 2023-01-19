@@ -282,5 +282,75 @@ namespace LanguageSchools
                 RefreshDataGrid();
             }
         }
+
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+            User loggedUser = Data.Instance.loggedUser;
+            if (loggedUser.JMBG == null)
+            {
+                MessageBox.Show("No User is Logged In");
+            }
+            else
+            {
+                Data.Instance.loggedUser = new User();
+                MessageBox.Show("Successfully Logged Out");
+            }
+        }
+
+        public void showButtons()
+        {
+            if (Data.Instance.loggedUser.JMBG != null)
+            {
+                if (Data.Instance.loggedUser.UserType == EUserType.STUDENT)
+                {
+                    btnLogin.Visibility = Visibility.Collapsed;
+                    btnLogout.Visibility = Visibility.Visible;
+                }
+                else if (Data.Instance.loggedUser.UserType == EUserType.PROFESSOR)
+                {
+                    btnLogin.Visibility = Visibility.Collapsed;
+                    btnLogout.Visibility = Visibility.Visible;
+                }
+                else if (Data.Instance.loggedUser.UserType == EUserType.ADMIN)
+                {
+                    btnLogin.Visibility = Visibility.Collapsed;
+                    btnLogout.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void btnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            User loggedUser = Data.Instance.loggedUser;
+            if (loggedUser.JMBG != null)
+            {
+                if (loggedUser.UserType == EUserType.STUDENT)
+                {
+                    var studentProfileWindow = new AddEditStudentsWindow(loggedUser);
+                    var successeful = studentProfileWindow.ShowDialog();
+                    if ((bool)successeful)
+                    {
+                        RefreshDataGrid();
+                    }
+                }
+                else if (loggedUser.UserType == EUserType.PROFESSOR)
+                {
+                    var professorProfileWindow = new AddEditProfessorsWindow(loggedUser);
+                    var successeful = professorProfileWindow.ShowDialog();
+                    if ((bool)successeful)
+                    {
+                        RefreshDataGrid();
+                    }
+                }
+                else if (loggedUser.UserType == EUserType.ADMIN)
+                {
+                    //TODO
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
     }
 }

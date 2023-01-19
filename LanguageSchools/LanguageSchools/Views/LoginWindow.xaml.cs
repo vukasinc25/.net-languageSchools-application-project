@@ -47,6 +47,7 @@ namespace LanguageSchools.Views
                 {
                     Data.Instance.loggedUser = user;
                     MainWindow mainWindow = new MainWindow();
+                    MessageBox.Show("Successful Login");
                     this.Close();
                 }
                 else
@@ -65,7 +66,6 @@ namespace LanguageSchools.Views
                     MessageBox.Show("Password field is empty");
                 }
             }
-
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

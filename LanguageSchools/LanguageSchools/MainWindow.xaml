@@ -17,8 +17,10 @@
         <WrapPanel 
             DockPanel.Dock="Top"
             HorizontalAlignment="Left">
-            <Button Name="login" Click="login_Click">Login</Button>
-            <Button Name="register" Click="register_Click">Register</Button>
+            <Button Name="btnProfile" Click="btnProfile_Click">Profile</Button>
+            <Button Name="btnLogin" Click="login_Click">Login</Button>
+            <Button Name="btnLogout" Click="logout_Click">Logout</Button>
+            <Button Name="btnRegister" Click="register_Click">Register</Button>
         </WrapPanel>
         <Grid>
             <TabControl HorizontalAlignment="Stretch">

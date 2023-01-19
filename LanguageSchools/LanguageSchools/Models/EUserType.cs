@@ -8,6 +8,6 @@ namespace LanguageSchools.Models
 {
     public enum EUserType
     {
-        ADMINISTRATOR, PROFESSOR, STUDENT
+        ADMIN, PROFESSOR, STUDENT
     }
 }
