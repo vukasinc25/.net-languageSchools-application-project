@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace LanguageSchools.Views
 {
-    /// <summary>
-    /// Interaction logic for AddEditSchoolClassesWindow.xaml
-    /// </summary>
     public partial class AddEditSchoolClassesWindow : Window
     {
         private SchoolClass schoolClass;
@@ -29,15 +26,15 @@ namespace LanguageSchools.Views
         public AddEditSchoolClassesWindow()
         {
             InitializeComponent();
-            cbProfessor.ItemsSource = new List<User>(professorService.GetAll());
-            cbStudent.ItemsSource = new List<User>(studentService.GetAll());
+            cbProfessor.ItemsSource = new List<User>(professorService.GetAll().Where(p => p.UserType == EUserType.PROFESSOR));
+            cbProfessor.SelectedItem = cbProfessor.Items[0];
+            //cbStudent.ItemsSource = new List<User>(studentService.GetAll());
+            //cbStudent.SelectedItem= cbStudent.Items[0];
 
             schoolClass = new SchoolClass
             {
                 Date = DateTime.Today,
                 IsActive = true
-
-                //Id = 0
             };
 
             isAddMode = true;
@@ -46,22 +43,22 @@ namespace LanguageSchools.Views
         public AddEditSchoolClassesWindow(SchoolClass schoolClass)
         {
             InitializeComponent();
-            cbProfessor.ItemsSource = new List<User>(professorService.GetAll());
-            cbStudent.ItemsSource = new List<User>(studentService.GetAll());
             this.schoolClass = schoolClass.Clone() as SchoolClass;
+            List<User> professors = professorService.GetAll().Where(p => p.UserType == EUserType.PROFESSOR).ToList();
+            cbProfessor.ItemsSource = professors;
+            cbProfessor.SelectedValuePath = "Id";
+            cbProfessor.SelectedValue = this.schoolClass.Professor.Id;
 
             DataContext = this.schoolClass;
-
             isAddMode = false;
-            txtName.IsReadOnly = true;
-            //TxtEmail.IsReadOnly = true;
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            schoolClass.Professor = (User)cbProfessor.SelectedItem;
             if (isAddMode)
             {
                 schoolClass.Professor = cbProfessor.SelectedItem as User;
-                schoolClass.Student = cbStudent.SelectedItem as User;
+                //schoolClass.Student = cbStudent.SelectedItem as User;
                 schoolClassService.Add(schoolClass);
             }
             else

@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace LanguageSchools.Views
 {
-    /// <summary>
-    /// Interaction logic for AddEditStudentsWindow.xaml
-    /// </summary>
     public partial class AddEditStudentsWindow : Window
     {
         private User student;
@@ -27,16 +24,11 @@ namespace LanguageSchools.Views
         public AddEditStudentsWindow()
         {
             InitializeComponent();
-            var user = new User
+            student = new User
             {
                 UserType = EUserType.STUDENT,
                 IsActive = true
             };
-
-            //student = new User
-            //{
-            //    User = user
-            //};
 
             isAddMode = true;
             DataContext = student;
@@ -62,7 +54,7 @@ namespace LanguageSchools.Views
                 }
                 else
                 {
-                    studentService.Update(student.Email, student);
+                    studentService.Update(student.Id, student);
                 }
 
                 DialogResult = true;

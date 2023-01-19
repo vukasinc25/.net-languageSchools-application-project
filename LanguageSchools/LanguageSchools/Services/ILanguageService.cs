@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LanguageSchools.Services
 {
-    internal interface ILanguageService
+    interface ILanguageService
     {
     }
 }

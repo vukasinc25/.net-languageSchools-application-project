@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LanguageSchools.Repositories
 {
-    internal class LanguageRepository
+    class LanguageRepository
     {
     }
 }

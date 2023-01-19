@@ -1,0 +1,62 @@
+﻿<Window x:Class="LanguageSchools.Views.ShowAllTables"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LanguageSchools.Views"
+        mc:Ignorable="d"
+        Title="Show All Tables" Height="800" Width="1150">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="65"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Margin" Value="7"></Setter>
+        </Style>
+    </Window.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <DataGrid CanUserAddRows="False" IsReadOnly="True" Name="DgSchools" AutoGeneratingColumn="DgSchools_AutoGeneratingColumn" Grid.Row="0"></DataGrid>
+        <WrapPanel HorizontalAlignment="Right" Grid.Row="1">
+            <Button Name="BtnAddSchool" Click="BtnAddSchool_Click">Add</Button>
+            <Button Name="BtnEditSchool" Click="BtnEditSchool_Click">Edit</Button>
+            <Button Name="BtnDeleteSchool" Click="BtnDeleteSchool_Click">Delete</Button>
+            <!--<Button Name="BtnShowProfessors" Click="BtnShowProfessors_Click" >Show Professors</Button>-->
+        </WrapPanel>
+        
+        <DataGrid Grid.Row="2" CanUserAddRows="False" IsReadOnly="True" Name="DgClasses"
+                        AutoGeneratingColumn="DgClasses_AutoGeneratingColumn"></DataGrid>
+        <WrapPanel Grid.Row="3" HorizontalAlignment="Right">
+            <Button Name="BtnAddClass" Click="BtnAddClass_Click">Add</Button>
+            <Button Name="BtnEditClass" Click="BtnEditClass_Click">Edit</Button>
+            <Button Name="BtnDeleteClass" Click="BtnDeleteClass_Click">Delete</Button>
+        </WrapPanel>
+
+        <DataGrid Grid.Row="4" CanUserAddRows="False" IsReadOnly="True" Name="DgProfessors"
+                        AutoGeneratingColumn="DgProfessors_AutoGeneratingColumn"></DataGrid>
+        <WrapPanel Grid.Row="5" HorizontalAlignment="Right">
+            <Button Name="BtnAddProfessor" Click="BtnAddProfessor_Click">Add</Button>
+            <Button Name="BtnEditProfessor" Click="BtnEditProfessor_Click">Edit</Button>
+            <Button Name="BtnDeleteProfessor" Click="BtnDeleteProfessor_Click">Delete</Button>
+        </WrapPanel>
+
+        <DataGrid Grid.Row="6" CanUserAddRows="False" IsReadOnly="True" Name="DgStudents"
+                        AutoGeneratingColumn="DgStudents_AutoGeneratingColumn"></DataGrid>
+            <WrapPanel Grid.Row="7" HorizontalAlignment="Right">
+                <Button Name="BtnAddStudent" Click="BtnAddStudent_Click">Add</Button>
+                <Button Name="BtnEditStudent" Click="BtnEditStudent_Click">Edit</Button>
+                <Button Name="BtnDeleteStudent" Click="BtnDeleteStudent_Click">Delete</Button>
+            </WrapPanel>
+    </Grid>
+    </ScrollViewer>
+</Window>

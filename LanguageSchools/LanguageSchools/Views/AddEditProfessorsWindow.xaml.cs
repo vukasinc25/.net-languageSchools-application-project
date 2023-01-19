@@ -16,30 +16,20 @@ using System.Windows.Shapes;
 
 namespace LanguageSchools.Views
 {
-    /// <summary>
-    /// Interaction logic for AddEditProfessorsWindow.xaml
-    /// </summary>
     public partial class AddEditProfessorsWindow : Window
     {
         private User professor;
         private IUserService professorService = new UserService();
         private bool isAddMode;
         
-
         public AddEditProfessorsWindow()
         {
             InitializeComponent();
-            var user = new User
+            professor = new User
             {
                 UserType = EUserType.PROFESSOR,
                 IsActive = true
             };
-
-            //professor = new User
-            //{
-            //    User = user
-
-            //};
 
             isAddMode = true;
             DataContext = professor;
@@ -66,7 +56,7 @@ namespace LanguageSchools.Views
                 }
                 else
                 {
-                    professorService.Update(professor.Email, professor);
+                    professorService.Update(professor.Id, professor);
                 }
 
                 DialogResult = true;

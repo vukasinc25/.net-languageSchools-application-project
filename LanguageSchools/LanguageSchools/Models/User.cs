@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LanguageSchools.Models
 {
@@ -51,12 +52,13 @@ namespace LanguageSchools.Models
         {
             return new User
             {
+                Id= Id,
                 Email = Email,
                 Password = Password,
                 FirstName = FirstName,
                 LastName = LastName,
-                JMBG = JMBG,
                 UserType = UserType,
+                JMBG = JMBG,
                 Gender = Gender,
                 Street = Street,
                 StreetNumber = StreetNumber,
@@ -90,6 +92,23 @@ namespace LanguageSchools.Models
                 {
                     return "JMBG cannot be empty!";
                 }
+                else if (string.IsNullOrEmpty(Street))
+                {
+                    return "Street cannot be empty!";
+                }
+                else if (string.IsNullOrEmpty(StreetNumber))
+                {
+                    return "StreetNumber name cannot be empty!";
+                }
+                else if (string.IsNullOrEmpty(City))
+                {
+                    return "City name cannot be empty!";
+                }
+                else if (string.IsNullOrEmpty(Country))
+                {
+                    return "Country cannot be empty!";
+                }
+
 
                 return "";
             }
@@ -125,6 +144,26 @@ namespace LanguageSchools.Models
                 {
                     IsValid = false;
                     return "JMBG cannot be empty!";
+                }
+                else if (columnName == "Street" && string.IsNullOrEmpty(Street))
+                {
+                    IsValid = false;
+                    return "Street cannot be empty!";
+                }
+                else if (columnName == "StreetNumber" && string.IsNullOrEmpty(StreetNumber))
+                {
+                    IsValid = false;
+                    return "StreetNumber name cannot be empty!";
+                }
+                else if (columnName == "City" && string.IsNullOrEmpty(City))
+                {
+                    IsValid = false;
+                    return "City name cannot be empty!";
+                }
+                else if (columnName == "Country" && string.IsNullOrEmpty(Country))
+                {
+                    IsValid = false;
+                    return "Country cannot be empty!";
                 }
 
                 return "";

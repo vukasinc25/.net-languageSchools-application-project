@@ -75,15 +75,19 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Repositories\ILanguageRepository.cs" />
     <Compile Include="Repositories\ISchoolClassRepository.cs" />
+    <Compile Include="Repositories\ISchoolRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\LanguageRepository.cs" />
     <Compile Include="Repositories\SchoolClassRepository.cs" />
+    <Compile Include="Repositories\SchoolRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Services\ISchoolClassesService.cs" />
+    <Compile Include="Services\ISchoolService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\SchoolClassesService.cs" />
+    <Compile Include="Services\SchoolService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Views\AddEditProfessorsWindow.xaml.cs">
       <DependentUpon>AddEditProfessorsWindow.xaml</DependentUpon>
@@ -97,8 +101,11 @@
     <Compile Include="Views\AddEditStudentsWindow.xaml.cs">
       <DependentUpon>AddEditStudentsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserLogin.xaml.cs">
-      <DependentUpon>UserLogin.xaml</DependentUpon>
+    <Compile Include="Views\ShowAllTables.xaml.cs">
+      <DependentUpon>ShowAllTables.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AddEditSchoolClassesWindow.xaml">
       <SubType>Designer</SubType>
@@ -128,7 +135,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserLogin.xaml">
+    <Page Include="Views\ShowAllTables.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,6 +176,7 @@
   <ItemGroup>
     <Content Include="Scripts\createTables.sql" />
     <Content Include="Scripts\insertTables.sql" />
+    <Content Include="Scripts\selectTables.sql" />
   </ItemGroup>
   <ItemGroup Condition="$(VisualStudioVersion) == '17.0'">
     <Reference Include="Microsoft.Data.Tools.Schema.Sql, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -186,4 +198,8 @@
   </PropertyGroup>
   <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' == ''" />
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(TargetPath).locked" del "$(TargetPath).locked"
+if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)" "$(TargetPath).locked"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

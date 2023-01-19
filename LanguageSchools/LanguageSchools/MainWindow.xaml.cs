@@ -18,14 +18,13 @@ using System.Windows.Shapes;
 
 namespace LanguageSchools
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
+        private SchoolService schoolService = new SchoolService();
+        private SchoolClassesService schoolClassService = new SchoolClassesService();
         private UserService professorService = new UserService();
         private UserService studentService = new UserService();
-        private SchoolClassesService schoolClassService = new SchoolClassesService();
         public MainWindow()
         {
             InitializeComponent();
@@ -35,19 +34,23 @@ namespace LanguageSchools
 
         private void RefreshDataGrid()
         {
-            List<User> usersStudents = studentService.GetAll().Select(p => p).ToList();
+            List<User> usersStudents = studentService.GetAll().Where(p => p.UserType == EUserType.STUDENT).ToList();
             DgStudents.ItemsSource = usersStudents;
-            DgStudentsAll.ItemsSource = usersStudents;
-   
-            List<User> usersProfessors = professorService.GetAll().Select(p => p).ToList();
+            //DgStudentsAll.ItemsSource = usersStudents;
+
+            List<User> usersProfessors = professorService.GetAll().Where(p => p.UserType == EUserType.PROFESSOR).ToList();
             DgProfessors.ItemsSource = usersProfessors;
 
-            List<SchoolClass> schoolClasses = schoolClassService.GetAll().Select(p => p).ToList();
-            DgClasses.ItemsSource = schoolClasses;
-            DgClassesAll.ItemsSource = schoolClasses;
-            
+            List<School> schools = schoolService.GetAll();
+            DgSchools.ItemsSource = schools;
+
+            //List<SchoolClass> schoolClasses = schoolClassService.GetAll().Select(p => p).ToList();
+            //DgClasses.ItemsSource = schoolClasses;
+            //DgClassesAll.ItemsSource = schoolClasses;
+
         }
         //--------------------PROFESSOR--------------------//
+        #region Professor
         private void BtnAddProfessors_Click(object sender, RoutedEventArgs e)
         {
             var addEditProfessorWindow = new AddEditProfessorsWindow();
@@ -83,7 +86,7 @@ namespace LanguageSchools
 
             if (selectedUser != null)
             {
-                professorService.Delete(selectedUser.Email);
+                professorService.Delete(selectedUser.Id);
                 RefreshDataGrid();
             }
         }
@@ -94,8 +97,10 @@ namespace LanguageSchools
                 e.Column.Visibility = Visibility.Collapsed;
             }
         }
+        #endregion
 
         //--------------------STUDENT--------------------//
+        #region Student
         private void BtnAddStudent_Click(object sender, RoutedEventArgs e)
         {
             var addEditStudentWindow = new AddEditStudentsWindow();
@@ -107,7 +112,6 @@ namespace LanguageSchools
                 RefreshDataGrid();
             }
         }
-
         private void BtnEditStudent_Click(object sender, RoutedEventArgs e)
         {
             var selectedIndex = DgStudents.SelectedIndex;
@@ -126,18 +130,16 @@ namespace LanguageSchools
                 }
             }
         }
-
         private void BtnDeleteStudent_Click(object sender, RoutedEventArgs e)
         {
             var selectedUser = DgStudents.SelectedItem as User;
 
             if (selectedUser != null)
             {
-                studentService.Delete(selectedUser.Email);
+                studentService.Delete(selectedUser.Id);
                 RefreshDataGrid();
             }
         }
-
         private void DgStudents_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.PropertyName == "Error" || e.PropertyName == "IsValid")
@@ -145,37 +147,83 @@ namespace LanguageSchools
                 e.Column.Visibility = Visibility.Collapsed;
             }
         }
+        #endregion
 
         //--------------------CLASS--------------------//
-        private void DgClasses_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            if (e.PropertyType == typeof(DateTime))
-            {
-                (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
-            }
-        }
-        private void BtnAddClasses_Click(object sender, RoutedEventArgs e)
-        {
-            var addEditSchClassWindow = new AddEditSchoolClassesWindow();
+        #region Class
+        //private void DgClasses_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        //{
+        //    if (e.PropertyType == typeof(DateTime))
+        //    {
+        //        (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
+        //    }
+        //}
+        //private void BtnAddClasses_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var addEditSchClassWindow = new AddEditSchoolClassesWindow();
 
-            var successeful = addEditSchClassWindow.ShowDialog();
+        //    var successeful = addEditSchClassWindow.ShowDialog();
+
+        //    if ((bool)successeful)
+        //    {
+        //        RefreshDataGrid();
+        //    }
+        //}
+        //private void BtnEditClasses_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var selectedIndex = DgClasses.SelectedIndex;
+
+        //    if (selectedIndex >= 0)
+        //    {
+        //        var classes = schoolClassService.GetAll();
+
+        //        var addEditSchClassWindow = new AddEditSchoolClassesWindow(classes[selectedIndex]);
+
+        //        var successeful = addEditSchClassWindow.ShowDialog();
+
+        //        if ((bool)successeful)
+        //        {
+        //            RefreshDataGrid();
+        //        }
+        //    }
+        //}
+        //private void BtnDeleteClasses_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var selectedClass = DgClasses.SelectedItem as SchoolClass;
+
+        //    if (selectedClass != null)
+        //    {
+        //        int id = selectedClass.Id;
+        //        schoolClassService.Delete(id);
+        //        RefreshDataGrid();
+        //    }
+        //}
+        #endregion
+
+        //--------------------SCHOOL--------------------//
+        #region School
+        private void BtnAddSchool_Click(object sender, RoutedEventArgs e)
+        {
+            var addEditSchoolWindow = new AddEditSchoolsWindow();
+
+            var successeful = addEditSchoolWindow.ShowDialog();
 
             if ((bool)successeful)
             {
                 RefreshDataGrid();
             }
         }
-        private void BtnEditClasses_Click(object sender, RoutedEventArgs e)
+        private void BtnEditSchool_Click(object sender, RoutedEventArgs e)
         {
-            var selectedIndex = DgClasses.SelectedIndex;
+            var selectedIndex = DgSchools.SelectedIndex;
 
             if (selectedIndex >= 0)
             {
-                var classes = schoolClassService.GetAll();
+                var schools = schoolService.GetAll();
 
-                var addEditSchClassWindow = new AddEditSchoolClassesWindow(classes[selectedIndex]);
+                var addEditSchoolWindow = new AddEditSchoolsWindow(schools[selectedIndex]);
 
-                var successeful = addEditSchClassWindow.ShowDialog();
+                var successeful = addEditSchoolWindow.ShowDialog();
 
                 if ((bool)successeful)
                 {
@@ -183,24 +231,31 @@ namespace LanguageSchools
                 }
             }
         }
-        private void BtnDeleteClasses_Click(object sender, RoutedEventArgs e)
+        private void BtnDeleteSchool_Click(object sender, RoutedEventArgs e)
         {
-            var selectedClass = DgClasses.SelectedItem as SchoolClass;
+            var selectedSchool = DgSchools.SelectedItem as School;
 
-            if (selectedClass != null)
+            if (selectedSchool != null)
             {
-                int id = selectedClass.Id;
-                schoolClassService.Delete(id);
+                schoolService.Delete(selectedSchool.Id);
                 RefreshDataGrid();
             }
         }
 
-        //--------------------SCHOOL--------------------//
-        private void BtnAddSchools_Click(object sender, RoutedEventArgs e)
+        private void DgSchools_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            var AddEditSchoolWindow = new AddEditSchoolWindow();
+            if (e.PropertyName == "Error" || e.PropertyName == "IsValid")
+            {
+                e.Column.Visibility = Visibility.Collapsed;
+            }
+        }
+        #endregion
+        
 
-            var successeful = AddEditSchoolWindow.showdialog();
+        private void ShowAllTables_Click(object sender, RoutedEventArgs e)
+        {
+            var showAllTables = new ShowAllTables();
+            var successeful = showAllTables.ShowDialog();
 
             if ((bool)successeful)
             {
@@ -208,41 +263,23 @@ namespace LanguageSchools
             }
         }
 
-        private void btnEditSchools_Click(object sender, RoutedEventArgs e)
+        private void register_Click(object sender, RoutedEventArgs e)
         {
-            var selectedindex = dgSchools.selectedindex;
-
-            if (selectedindex >= 0)
+            var addEditStudentWindow = new AddEditStudentsWindow();
+            var successeful = addEditStudentWindow.ShowDialog();
+            if ((bool)successeful)
             {
-                var students = studentService.getall();
-
-                var addeditstudentwindow = new addEditStudentsWindow(students[selectedindex]);
-
-                var successeful = addeditstudentwindow.showdialog();
-
-                if ((bool)successeful)
-                {
-                    RefreshDataGrid();
-                }
-            }
-        }
-
-        private void btnDeleteSchools_Click(object sender, RoutedEventArgs e)
-        {
-            var selecteduser = dgStudents.selecteditem as User;
-
-            if (selecteduser != null)
-            {
-                studentService.delete(selecteduser.email);
                 RefreshDataGrid();
             }
         }
 
-        private void dgSchools_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        private void login_Click(object sender, RoutedEventArgs e)
         {
-            if (e.PropertyType == "error" || e.PropertyType == "isvalid")
+            var loginWindow = new LoginWindow();
+            var successeful = loginWindow.ShowDialog();
+            if ((bool)successeful)
             {
-                e.Column.Visibility = Visibility.collapsed;
+                RefreshDataGrid();
             }
         }
     }

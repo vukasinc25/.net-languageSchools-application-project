@@ -10,5 +10,6 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/createtables.sql")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/inserttables.sql")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/selecttables.sql")]
 
 

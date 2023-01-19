@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LanguageSchools"
         mc:Ignorable="d"
-        Title="Language Schools" Height="750" Width="1100">
+        Title="Language Schools" Height="800" Width="1150">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Width" Value="65"></Setter>
@@ -17,39 +17,30 @@
         <WrapPanel 
             DockPanel.Dock="Top"
             HorizontalAlignment="Left">
-            <!--<Button>Login</Button>
-            <Button>Register</Button>-->
+            <Button Name="login" Click="login_Click">Login</Button>
+            <Button Name="register" Click="register_Click">Register</Button>
         </WrapPanel>
         <Grid>
             <TabControl HorizontalAlignment="Stretch">
-                <TabItem Name="TiClasses" Header="Classes">
+                <TabItem Name="TiSchools" Header="Schools">
                     <Grid>
-                            <Grid.RowDefinitions>
+                         <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="200"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="200"></RowDefinition>
                         </Grid.RowDefinitions>
+                        
                             <StackPanel Orientation="Horizontal" Grid.Row="0">
                                 <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Language:</Label>
                                 <TextBox Name="CityInput" Width="150" Height="20" />
                                 <TextBlock Margin="15,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1">City:</TextBlock>
                                 <TextBox Name="LanguageInput" Width="150" Height="20"/>
-                                <WrapPanel  Margin="400,5,5,5" HorizontalAlignment="Right" Grid.Column="1">
-                                    <Button Name="BtnAddClasses" 
-                                            Click="BtnAddClasses_Click">Add</Button>
-                                    <Button Name="BtnEditClasses" 
-                                            Click="BtnEditClasses_Click">Edit</Button>
-                                    <Button Name="BtnDeleteClasses" 
-                                            Click="BtnDeleteClasses_Click">Delete</Button>
-                                    <!--<Button Name="BtnShowProfessors" Click="BtnShowProfessors_Click" >Show Professors</Button>-->
-                                </WrapPanel>
                             </StackPanel>
                         <DataGrid CanUserAddRows="False" IsReadOnly="True" Name="DgSchools" AutoGeneratingColumn="DgSchools_AutoGeneratingColumn" Grid.Row="1"></DataGrid>
                         
                         <StackPanel Orientation="Horizontal" Grid.Row="2">
-                            
                             <Label Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Name:</Label>
                             <TextBox Name="NameInput" Width="150" Height="20" />
                             <Label Margin="10,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center">Surname:</Label>
@@ -60,58 +51,19 @@
                             <TextBox Name="AdressInput" Width="150" Height="20"/>
                             <Label Margin="10,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1">Language</Label>
                             <TextBox Name="LanguageInput2" Width="150" Height="20"/>
-                            
                         </StackPanel>
-                        <WrapPanel Grid.Row="3" HorizontalAlignment="Right">
-                            <Button Name="BtnAddProfessors" Click="BtnAddProfessors_Click">Add</Button>
-                            <Button Name="BtnEditProfessor" Click="BtnEditProfessor_Click">Edit</Button>
-                            <Button Name="BtnDeleteProfessor" Click="BtnDeleteProfessor_Click">Delete</Button>
-                        </WrapPanel>
                         <DataGrid Grid.Row="4" CanUserAddRows="False" IsReadOnly="True" Name="DgProfessors" AutoGeneratingColumn="DgProfessors_AutoGeneratingColumn"></DataGrid>
                     </Grid>
                 </TabItem>
-                <TabItem Name="TiSchools" Header="Schools">
+                <TabItem Name="TiProfile" Header="Profile">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <GroupBox Grid.Column="0" Header="Schools:">
-
-                        </GroupBox>
-                        <GroupBox Header="Professors in them:"/>
+                        <Button Name="ShowAllTables" Click="ShowAllTables_Click">All Tables</Button>
                     </Grid>
                 </TabItem>
-                <!--<TabItem Name="TiProfessors" Header="Professors">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="26*"/>
-                            <ColumnDefinition Width="1569*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <DataGrid Grid.Row="0"
-                                              CanUserAddRows="False"
-                                              IsReadOnly="True"
-                                              Name="DgProfessors"
-                                              AutoGeneratingColumn="DgProfessors_AutoGeneratingColumn" Margin="0,0,0,91" Grid.RowSpan="3" Grid.ColumnSpan="2">
-                        </DataGrid>
-
-                        --><!--<WrapPanel Grid.Row="1"
-                                               HorizontalAlignment="Right" Grid.RowSpan="3" Grid.Column="1" Margin="0,201,0,0">
-                            <Button Name="BtnAddProfessors" 
-                                            Click="BtnAddProfessors_Click">Add</Button>
-                            <Button Name="BtnEditProfessor" 
-                                            Click="BtnEditProfessor_Click">Edit</Button>
-                            <Button Name="BtnDeleteProfessor" 
-                                            Click="BtnDeleteProfessor_Click">Delete</Button>
-                        </WrapPanel>--><!--
-                    </Grid>
-                </TabItem>-->
                 <TabItem Name="TiStudents" Header="Students">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -122,40 +74,11 @@
                         </Grid.RowDefinitions>
                         <DataGrid Grid.Row="0" CanUserAddRows="False" IsReadOnly="True" Name="DgStudents"
                         AutoGeneratingColumn="DgStudents_AutoGeneratingColumn" Margin="0,0,0,91" Grid.RowSpan="3"></DataGrid>
-                        
+
                         <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,21,10,70" Grid.RowSpan="2">
                             <Button Name="BtnAddStudent" Click="BtnAddStudent_Click">Add</Button>
                             <Button Name="BtnEditStudent" Click="BtnEditStudent_Click">Edit</Button>
                             <Button Name="BtnDeleteStudent" Click="BtnDeleteStudent_Click">Delete</Button>
-                        </WrapPanel>
-                    </Grid>
-                </TabItem>
-                <TabItem Name="TiAllTables" Header="Admin">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="200"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="200"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="200"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <DataGrid CanUserAddRows="False" IsReadOnly="True" Name="DgClassesAll" AutoGeneratingColumn="DgClasses_AutoGeneratingColumn" Grid.Row="0"></DataGrid>
-                        <WrapPanel HorizontalAlignment="Right" Grid.Row="1">
-                            <Button Name="BtnAddClassesAll" 
-                                            Click="BtnAddClasses_Click">Add</Button>
-                            <Button Name="BtnEditClassesAll" 
-                                            Click="BtnEditClasses_Click">Edit</Button>
-                            <Button Name="BtnDeleteClassesAll" 
-                                            Click="BtnDeleteClasses_Click">Delete</Button>
-                            <!--<Button Name="BtnShowProfessors" Click="BtnShowProfessors_Click" >Show Professors</Button>-->
-                        </WrapPanel>
-                        <DataGrid Grid.Row="2" CanUserAddRows="False" IsReadOnly="True" Name="DgStudentsAll"
-                        AutoGeneratingColumn="DgStudents_AutoGeneratingColumn" Margin="0,0,0,91" Grid.RowSpan="3"></DataGrid>
-                        <WrapPanel Grid.Row="3" HorizontalAlignment="Right" Margin="0,21,10,70" Grid.RowSpan="2">
-                            <Button Name="BtnAddStudentAll" Click="BtnAddStudent_Click">Add</Button>
-                            <Button Name="BtnEditStudentAll" Click="BtnEditStudent_Click">Edit</Button>
-                            <Button Name="BtnDeleteStudentAll" Click="BtnDeleteStudent_Click">Delete</Button>
                         </WrapPanel>
                     </Grid>
                 </TabItem>

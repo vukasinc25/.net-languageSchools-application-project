@@ -10,56 +10,34 @@ namespace LanguageSchools.Services
 {
     class SchoolClassesService : ISchoolClassesService
     {
-        private ISchoolClassRepository schoolClassRepository;
+        private ISchoolClassRepository repository;
         public SchoolClassesService()
         {
-            schoolClassRepository= new SchoolClassRepository();
+            repository = new SchoolClassRepository();
         }
-        public void Add(SchoolClass schoolClass)
+        public List<SchoolClass> GetActiveSchoolClasses()
         {
-            if (schoolClass.Id == 0)
-            {
-                schoolClass.Id = schoolClassRepository.nextId(GetAll());
-            }
-            schoolClassRepository.Add(schoolClass);
+            return repository.GetAll().Where(p => p.IsActive).ToList();
         }
-        public void Delete(int id)
-        {
-            schoolClassRepository.Delete(id);
-        }
-        //public int nextId(List<SchoolClass> listClasses)
-        //{
-        //    return schoolClassRepository.nextId(listClasses);
-        //}
-        public List<SchoolClass> GetActiveClasses()
-        {
-            return schoolClassRepository.GetAll().Where(p =>p.IsActive).ToList();
-        }
-        public List<SchoolClass> GetActiveClassesById(int id)
-        {
-            throw new NotImplementedException();
-            //TODO :D:D:D
-        }
+
         public List<SchoolClass> GetAll()
         {
-            return schoolClassRepository.GetAll();
+            return repository.GetAll();
         }
-        public SchoolClass GetById(int id)
+
+        public void Add(SchoolClass schoolClass)
         {
-            return schoolClassRepository.GetById(id);
+            repository.Add(schoolClass);
         }
-        public List<SchoolClass> ListAllClasses()
-        {
-            throw new NotImplementedException();
-            //TODO :D:D:D:DD
-        }
-        public void Set(List<SchoolClass> schoolClass)
-        {
-            schoolClassRepository.Set(schoolClass);
-        }
+
         public void Update(int id, SchoolClass schoolClass)
         {
-            schoolClassRepository.Update(id, schoolClass);
+            repository.Update(id, schoolClass);
+        }
+
+        public void Delete(int id)
+        {
+            repository.Delete(id);
         }
     }
 }

@@ -8,27 +8,23 @@ using LanguageSchools.Services;
 
 namespace LanguageSchools.Models
 {
-    [Serializable]
     public class Data
     {
-        [NonSerialized]
         private static Data instance;
 
-        public List<User> Users { get; set; }
-        public List<Professor> Professors { get; set; }
-        public List<Student> Students { get; set; }
-        public List<SchoolClass> SchoolClasses { get; set; }
-        public List<Address> Adresses { get; set; }
+        //public List<User> Users { get; set; }
+        //public List<Professor> Professors { get; set; }
+        //public List<Student> Students { get; set; }
+        //public List<SchoolClass> SchoolClasses { get; set; }
+        //public List<Address> Adresses { get; set; }
+
+        public User loggedUser { get; set; }
 
         static Data() { }
 
         private Data()
         {
-            Users = new List<User>();
-            Professors = new List<Professor>();
-            Students = new List<Student>();
-            SchoolClasses = new List<SchoolClass>();
-            Adresses = new List<Address>();
+            loggedUser = new User();
         }
 
         public static Data Instance
@@ -44,44 +40,6 @@ namespace LanguageSchools.Models
             }
 
             private set => instance = value;
-        }
-
-        public void Initialize()
-        {
-            Address address = new Address
-            {
-                City = "Novi Sad",
-                Country = "Srbija",
-                Street = "ulica1",
-                StreetNumber = "22",
-                Id = 1
-            };
-        }
-
-        public void Save()
-        {
-            IFormatter formatter = new BinaryFormatter();
-            using (Stream stream = new FileStream(Config.dataFilePath, FileMode.Create, FileAccess.Write))
-            {
-                formatter.Serialize(stream, this);
-            }
-        }
-
-        public static void Load()
-        {
-            try
-            {
-                IFormatter formatter = new BinaryFormatter();
-                using (Stream stream = new FileStream(Config.dataFilePath, FileMode.Open, FileAccess.Read))
-                {
-                    Instance = (Data)formatter.Deserialize(stream);
-                }
-            }
-            catch (Exception ejo)
-            {
-                Instance = new Data();
-            }
-
-        }
+       
     }
 }

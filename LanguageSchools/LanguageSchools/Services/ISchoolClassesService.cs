@@ -10,13 +10,9 @@ namespace LanguageSchools.Services
     interface ISchoolClassesService
     {
         List<SchoolClass> GetAll();
-        SchoolClass GetById(int id);
-        List<SchoolClass> GetActiveClasses();
-        List<SchoolClass> GetActiveClassesById(int id);
+        List<SchoolClass> GetActiveSchoolClasses();
         void Add(SchoolClass schoolClass);
-        void Set(List<SchoolClass> schoolClass);
         void Update(int id, SchoolClass schoolClass);
         void Delete(int id);
-        List<SchoolClass> ListAllClasses();
     }
 }

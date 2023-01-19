@@ -12,41 +12,36 @@ namespace LanguageSchools.Services
 {
     class UserService : IUserService
     {
-        private IUserRepository repostory;
+        private IUserRepository repository;
 
         public UserService()
-        {   
-            repostory = new UserRepository();
+        {
+            repository = new UserRepository();
         }
 
         public List<User> GetActiveUsers()
         {
-            return repostory.GetAll().Where(p => p.IsActive).ToList();
+            return repository.GetAll().Where(p => p.IsActive).ToList();
         }
 
         public List<User> GetAll()
         {
-            return repostory.GetAll();
+            return repository.GetAll();
         }
 
         public void Add(User user)
         {
-            repostory.Add(user);
+            repository.Add(user);
         }
 
-        public void Set(List<User> users)
+        public void Update(int id, User user)
         {
-            repostory.Set(users);
+            repository.Update(id, user);
         }
 
-        public void Update(string email, User user)
+        public void Delete(int id)
         {
-            repostory.Update(email, user);
-        }
-
-        public void Delete(string email)
-        {
-            repostory.Delete(email);
+            repository.Delete(id);
         }
     }
 }

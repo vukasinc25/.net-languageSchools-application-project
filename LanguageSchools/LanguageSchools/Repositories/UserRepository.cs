@@ -28,9 +28,9 @@ namespace LanguageSchools.Repositories
 
                 SqlCommand command = conn.CreateCommand();
                 command.CommandText = @"
-                    insert into dbo.Users (Email, Password, FirstName, LastName, Jmbg, Gender, UserType, IsActive, Street, StreetNumber, City, Country)
+                    insert into dbo.Users (Email, Password, FirstName, LastName, Jmbg, Gender, UserType, IsActive, Street, StreetNumber, City, Country, SchoolId)
                     output inserted.Id
-                    values (@Email, @Password, @FirstName, @LastName, @Jmbg, @Gender, @UserType, @IsActive, @Street, @StreetNumber, @City, @Country)";
+                    values (@Email, @Password, @FirstName, @LastName, @Jmbg, @Gender, @UserType, @IsActive, @Street, @StreetNumber, @City, @Country, @SchoolId)";
 
                 command.Parameters.Add(new SqlParameter("Email", user.Email));
                 command.Parameters.Add(new SqlParameter("Password", user.Password));
@@ -44,6 +44,8 @@ namespace LanguageSchools.Repositories
                 command.Parameters.Add(new SqlParameter("StreetNumber", user.StreetNumber));
                 command.Parameters.Add(new SqlParameter("City", user.City));
                 command.Parameters.Add(new SqlParameter("Country", user.Country));
+                command.Parameters.Add(new SqlParameter("SchoolId", (object)user.SchoolId?? DBNull.Value));
+
 
                 return (int)command.ExecuteScalar();
             }
@@ -93,6 +95,7 @@ namespace LanguageSchools.Repositories
                         StreetNumber = row["StreetNumber"] as string,
                         City = row["City"] as string,
                         Country = row["Country"] as string,
+                        SchoolId = Convert.IsDBNull(row["SchoolId"]) ? null : (int?)row["SchoolId"]
                     };
 
                     users.Add(user);
@@ -102,7 +105,7 @@ namespace LanguageSchools.Repositories
             return users;
         }
 
-        public User GetById(int id)
+        public User GetById(int? id)
         {
             using (SqlConnection conn = new SqlConnection(Config.CONNECTION_STRING))
             {
@@ -131,6 +134,7 @@ namespace LanguageSchools.Repositories
                         StreetNumber = row["StreetNumber"] as string,
                         City = row["City"] as string,
                         Country = row["Country"] as string,
+                        SchoolId = Convert.IsDBNull(row["SchoolId"]) ? null : (int?)row["SchoolId"]
                     };
 
                     return user;
@@ -147,19 +151,21 @@ namespace LanguageSchools.Repositories
                 conn.Open();
 
                 SqlCommand command = conn.CreateCommand();
-                command.CommandText = @"update dbo.Users set 
-                        FirstName = @FirstName,
-                        LastName = @LastName,
-                        Password = @Password,
-                        Gender = @Gender,
-                        UserType = @UserType,
-                        Street = @Street,
-                        StreetNumber = @StreetNumber,
-                        City = @City,
-                        Country = @Country
-                        where Id=@id";
+                command.CommandText = @"update Users set 
+                        email = @Email,
+                        firstName = @FirstName,
+                        lastName = @LastName,
+                        password = @Password,
+                        gender = @Gender,
+                        userType = @UserType,
+                        street = @Street,
+                        streetNumber = @StreetNumber,
+                        city = @City,
+                        country = @Country,
+                        schoolId = @SchoolId
+                        where id=@id";
 
-                command.Parameters.Add(new SqlParameter("id", id));
+                command.Parameters.Add(new SqlParameter("Email", user.Email));
                 command.Parameters.Add(new SqlParameter("FirstName", user.FirstName));
                 command.Parameters.Add(new SqlParameter("LastName", user.LastName));
                 command.Parameters.Add(new SqlParameter("Password", user.Password));
@@ -170,6 +176,7 @@ namespace LanguageSchools.Repositories
                 command.Parameters.Add(new SqlParameter("StreetNumber", user.StreetNumber));
                 command.Parameters.Add(new SqlParameter("City", user.City));
                 command.Parameters.Add(new SqlParameter("Country", user.Country));
+                command.Parameters.Add(new SqlParameter("SchoolId", (object)user.SchoolId ?? DBNull.Value));
 
                 command.ExecuteScalar();
             }

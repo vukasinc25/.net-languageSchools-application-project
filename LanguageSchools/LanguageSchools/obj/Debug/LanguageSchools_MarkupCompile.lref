@@ -1,8 +1,10 @@
 ﻿
 FC:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\App.xaml;;
 FC:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\Views\AddEditSchoolClassesWindow.xaml;;
+FC:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\Views\AddEditSchoolsWindow.xaml;;
 FC:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\Views\AddEditStudentsWindow.xaml;;
 FC:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\MainWindow.xaml;;
 FC:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\Views\AddEditProfessorsWindow.xaml;;
-FC:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\Views\UserLogin.xaml;;
+FC:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\Views\ShowAllTables.xaml;;
+FC:\Projekti\sr34-2021-pop2022\LanguageSchools\LanguageSchools\Views\LoginWindow.xaml;;
 

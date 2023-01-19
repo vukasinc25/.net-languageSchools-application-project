@@ -46,7 +46,7 @@
                  Grid.Row="1"
                  Name="txtStreet"
                  Margin="5,5,5,5"
-                 Text="{Binding Path = User.Adress.Street, ValidatesOnDataErrors=True}"></TextBox>
+                 Text="{Binding Path = Street, ValidatesOnDataErrors=True}"></TextBox>
 
         <Label Grid.Column="0" Grid.Row="2" 
                Name="lblNumber" 
@@ -57,7 +57,7 @@
                  Grid.Row="2"
                  Name="txtNumber"
                  Margin="5,5,5,5"
-                 Text="{Binding Path = User.Adress.StreetNumber, ValidatesOnDataErrors=True}"></TextBox>
+                 Text="{Binding Path = StreetNumber, ValidatesOnDataErrors=True}"></TextBox>
 
         <Label Grid.Column="0" Grid.Row="3" 
                Name="lblCity" 
@@ -68,9 +68,9 @@
                  Grid.Row="3"
                  Name="txtCity"
                  Margin="5,5,5,5"
-                 Text="{Binding Path = User.Adress.City, ValidatesOnDataErrors=True}"></TextBox>
+                 Text="{Binding Path =City, ValidatesOnDataErrors=True}"></TextBox>
 
-        <Label Grid.Column="0" Grid.Row="4" 
+        <Label Grid.Column="0" Grid.Row="3" 
                Name="lblCountry" 
                Content="Country:"
                HorizontalAlignment="Left" Width="62" Grid.ColumnSpan="2" Margin="43,40,0,0" Grid.RowSpan="2"></Label>
@@ -79,7 +79,7 @@
                  Grid.Row="4"
                  Name="txtCountry"
                  Margin="5,5,5,5"
-                 Text="{Binding Path = User.Adress.Country, ValidatesOnDataErrors=True}"></TextBox>
+                 Text="{Binding Path =Country, ValidatesOnDataErrors=True}"></TextBox>
 
         <Button Name="btnSave"
                 Grid.Column="1"

@@ -12,8 +12,7 @@ namespace LanguageSchools.Services
         List<User> GetAll();
         List<User> GetActiveUsers();
         void Add(User user);
-        void Set(List<User> users);
-        void Update(string email, User user);
-        void Delete(string email);
+        void Update(int id, User user);
+        void Delete(int id);
     }
 }

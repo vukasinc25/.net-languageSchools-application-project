@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LanguageSchools.Models
 {
     [Serializable]
-    public class SchoolClass : ICloneable
+    public class SchoolClass : ICloneable, IDataErrorInfo
     {
         public int Id { get; set; }
-        public string Name { get; set; }
         public DateTime Date { get; set; }
         public string StartTime { get; set; }
         public string Duration { get; set; }
         public EState State { get; set; }
         public bool IsActive { get; set; }
+        public bool IsValid { get; set; }
         private User professor;
         public User Professor
         {
@@ -43,15 +46,59 @@ namespace LanguageSchools.Models
             return new SchoolClass
             {
                 Id = Id,
-                Name = Name,
+                Date = Date,
                 StartTime = StartTime,
                 Duration = Duration,
-                Date = Date,
                 State = State,
                 IsActive= IsActive,
-                Student = Student?.Clone() as User,
-                Professor = Professor?.Clone() as User
+                Professor = Professor?.Clone() as User,
+                Student = Student?.Clone() as User
             };
+        }
+        public string Error
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Date + ""))
+                {
+                    return "Date cannot be empty!";
+                }
+                else if (string.IsNullOrEmpty(StartTime))
+                {
+                    return "StartTime cannot be empty!";
+                }
+                else if (string.IsNullOrEmpty(Duration))
+                {
+                    return "Duration cannot be empty!";
+                }
+                return "";
+            }
+        }
+
+        public string this[string columnName]
+        {
+
+            get
+            {
+                IsValid = true;
+                if (columnName == "Date" && string.IsNullOrEmpty(Date + ""))
+                {
+                    IsValid = false;
+                    return "Date cannot be empty!";
+                }
+                else if (columnName == "StartTime" && string.IsNullOrEmpty(StartTime))
+                {
+                    IsValid = false;
+                    return "StartTime cannot be empty!";
+                }
+                else if (columnName == "Duration" && string.IsNullOrEmpty(Duration))
+                {
+                    IsValid = false;
+                    return "Duration name cannot be empty!";
+                }
+
+                return "";
+            }
         }
     }
 }
